@@ -1,0 +1,22 @@
+PODS:
+  - CocoaAsyncSocket (7.3.5)
+  - PKJSONSocket (0.0.3):
+    - CocoaAsyncSocket (~> 7.3.2)
+  - ReactiveCocoa (2.3.1):
+    - ReactiveCocoa/UI
+  - ReactiveCocoa/Core (2.3.1):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.3.1)
+  - ReactiveCocoa/UI (2.3.1):
+    - ReactiveCocoa/Core
+
+DEPENDENCIES:
+  - PKJSONSocket (~> 0.0.3)
+  - ReactiveCocoa (~> 2.3)
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
+  PKJSONSocket: 2c5db0ecba4550d809a99014eb11523091319583
+  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
+
+COCOAPODS: 0.34.4
