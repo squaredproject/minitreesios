@@ -20,6 +20,14 @@ class Model: NSObject {
     dynamic var isIniting = false
     dynamic var loaded = false
     
+    dynamic var autoplay: Bool = false {
+        didSet {
+            if !self.isIniting {
+                ServerController.sharedInstance.setAutoplay(self.autoplay)
+            }
+        }
+    }
+    
     dynamic var channels: [Channel] = []
     dynamic var patterns: [Pattern] = []
     
@@ -48,10 +56,10 @@ class Model: NSObject {
             }
         }
     }
-    dynamic var staticEffect: Float = 0 {
+    dynamic var scrambleEffect: Float = 0 {
         didSet {
             if !self.isIniting {
-                ServerController.sharedInstance.setStatic(self.staticEffect)
+                ServerController.sharedInstance.setScramble(self.scrambleEffect)
             }
         }
     }

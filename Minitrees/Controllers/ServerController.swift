@@ -38,7 +38,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     
     func connect() {
         self.autoconnect = true
-        self.socket.connectToHost("Kyle.local", onPort: 5204, error: nil)
+        self.socket.connectToHost("odroid.local", onPort: 5204, error: nil)
     }
     
     func disconnect() {
@@ -71,6 +71,9 @@ class ServerController: NSObject, PKJSONSocketDelegate {
                 switch method {
                 case "model":
                     Model.sharedInstance.isIniting = true
+                    if let autoplay = params["autoplay"] as? Bool {
+                        Model.sharedInstance.autoplay = autoplay
+                    }
                     if let colorEffectsArray = params["colorEffects"] as? [Dictionary<String, AnyObject>] {
                         Model.sharedInstance.colorEffects = parseEffectsArray(colorEffectsArray)
                     }
@@ -87,8 +90,8 @@ class ServerController: NSObject, PKJSONSocketDelegate {
                     if let spin = params["spin"] as? Float {
                         Model.sharedInstance.spin = spin
                     }
-                    if let staticEffect = params["static"] as? Float {
-                        Model.sharedInstance.staticEffect = staticEffect
+                    if let scrambleEffect = params["scramble"] as? Float {
+                        Model.sharedInstance.scrambleEffect = scrambleEffect
                     }
                     if let blur = params["blur"] as? Float {
                         Model.sharedInstance.blur = blur
@@ -106,8 +109,8 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     func parseEffectsArray(effectsArray: [Dictionary<String, AnyObject>]) -> [Effect] {
         var effects = [Effect]()
         for effectParams in effectsArray {
-            let index = effectParams["index"] as Int
-            let name = effectParams["name"] as String
+            let index = effectParams["index"] as! Int
+            let name = effectParams["name"] as! String
             effects.append(Effect(index: index, name: name))
         }
         return effects
@@ -116,13 +119,13 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     func parseChannelsArray(channelsArray: [Dictionary<String, AnyObject>]) -> [Channel] {
         var channels = [Channel]()
         for channelParams in channelsArray {
-            let channelIndex = channelParams["index"] as Int
-            let currentPatternIndex = channelParams["currentPatternIndex"] as Int
-            let visibility = channelParams["visibility"] as Float
+            let channelIndex = channelParams["index"] as! Int
+            let currentPatternIndex = channelParams["currentPatternIndex"] as! Int
+            let visibility = channelParams["visibility"] as! Float
             var patterns = [Pattern]()
-            for (index, patternParams) in enumerate(channelParams["patterns"] as [Dictionary<String, AnyObject>]) {
-                let patternIndex = patternParams["index"] as Int
-                let name = patternParams["name"] as String
+            for (index, patternParams) in enumerate(channelParams["patterns"] as! [Dictionary<String, AnyObject>]) {
+                let patternIndex = patternParams["index"] as! Int
+                let name = patternParams["name"] as! String
                 patterns.append(Pattern(index: patternIndex, name: name))
             }
             let currentPattern: Pattern? = currentPatternIndex == -1 ? nil : (channelIndex == 0 ? patterns[currentPatternIndex] : channels[0].patterns[currentPatternIndex])
@@ -141,6 +144,10 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     
     func loadModel() {
         self.send("loadModel")
+    }
+    
+    func setAutoplay(autoplay: Bool) {
+        self.send("setAutoplay", params: ["autoplay": autoplay])
     }
     
     func setChannelPattern(channel: Channel) {
@@ -168,8 +175,8 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         self.send("setBlur", params: ["amount": amount])
     }
     
-    func setStatic(amount: Float) {
-        self.send("setStatic", params: ["amount": amount])
+    func setScramble(amount: Float) {
+        self.send("setScramble", params: ["amount": amount])
     }
    
 }

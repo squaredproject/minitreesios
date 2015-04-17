@@ -22,11 +22,6 @@ class ViewController: UIViewController, NSNetServiceBrowserDelegate {
         self.serviceBrowser.delegate = self
         self.serviceBrowser.searchForServicesOfType(bonjourServiceName, inDomain: "local.")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func netServiceBrowser(aNetServiceBrowser: NSNetServiceBrowser, didFindService aNetService: NSNetService, moreComing: Bool) {
         if aNetService.type == bonjourServiceName {

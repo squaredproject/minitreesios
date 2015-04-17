@@ -12,11 +12,15 @@ class MixerViewController: UIViewController {
 
     @IBOutlet weak var controllerView: UIView!
     @IBOutlet weak var connectingView: UIView!
+    @IBOutlet weak var connectedView: UIView!
+    @IBOutlet weak var autoplayView: UIView!
+    
+    @IBOutlet weak var autoplaySwitch: UISwitch!
     
     @IBOutlet weak var speedSlider: UISlider!
     @IBOutlet weak var spinSlider: UISlider!
     @IBOutlet weak var blurSlider: UISlider!
-    @IBOutlet weak var staticSlider: UISlider!
+    @IBOutlet weak var scrambleSlider: UISlider!
     
     @IBOutlet var sliders: [UISlider]!
     
@@ -25,9 +29,16 @@ class MixerViewController: UIViewController {
         
         ServerController.sharedInstance.connect()
         
-        Model.sharedInstance.rac_valuesForKeyPath("loaded", observer: self).subscribeNext { [unowned self] (connected: AnyObject!) in
-            self.controllerView.hidden = !Model.sharedInstance.loaded
+        Model.sharedInstance.rac_valuesForKeyPath("loaded", observer: self).subscribeNext { [unowned self] (_) in
             self.connectingView.hidden = Model.sharedInstance.loaded
+            self.connectedView.hidden = !Model.sharedInstance.loaded
+        }
+        
+        Model.sharedInstance.rac_valuesForKeyPath("autoplay", observer: self).subscribeNext { [unowned self] (_) in
+            self.autoplaySwitch.on = Model.sharedInstance.autoplay
+            
+            self.controllerView.hidden = Model.sharedInstance.autoplay
+            self.autoplayView.hidden = !Model.sharedInstance.autoplay
         }
         
         Model.sharedInstance.rac_valuesForKeyPath("speed", observer: self).subscribeNext { [unowned self] (_) in
@@ -42,8 +53,8 @@ class MixerViewController: UIViewController {
             self.blurSlider.value = Model.sharedInstance.blur
         }
         
-        Model.sharedInstance.rac_valuesForKeyPath("staticEffect", observer: self).subscribeNext { [unowned self] (_) in
-            self.staticSlider.value = Model.sharedInstance.staticEffect
+        Model.sharedInstance.rac_valuesForKeyPath("scrambleEffect", observer: self).subscribeNext { [unowned self] (_) in
+            self.scrambleSlider.value = Model.sharedInstance.scrambleEffect
         }
         
         for slider in self.sliders {
@@ -57,21 +68,10 @@ class MixerViewController: UIViewController {
                 forState: .Normal);
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func autoplayChanged(sender: AnyObject) {
+        Model.sharedInstance.autoplay = self.autoplaySwitch.on
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func speedChanged(sender: AnyObject) {
         Model.sharedInstance.speed = self.speedSlider.value
@@ -85,8 +85,8 @@ class MixerViewController: UIViewController {
         Model.sharedInstance.blur = self.blurSlider.value
     }
     
-    @IBAction func staticChanged(sender: AnyObject) {
-        Model.sharedInstance.staticEffect = self.staticSlider.value
+    @IBAction func scrambleChanged(sender: AnyObject) {
+        Model.sharedInstance.scrambleEffect = self.scrambleSlider.value
     }
 
 }

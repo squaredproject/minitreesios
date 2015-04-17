@@ -19,6 +19,7 @@
 		278800021A09AF0800B3BEB9 /* ChannelsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278800011A09AF0800B3BEB9 /* ChannelsCollectionViewController.swift */; };
 		278800041A09AF1400B3BEB9 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278800031A09AF1400B3BEB9 /* ChannelCollectionViewCell.swift */; };
 		278800081A09B30100B3BEB9 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278800071A09B30100B3BEB9 /* Channel.swift */; };
+		279872031AE0753900EF32D1 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 279872021AE0753900EF32D1 /* Podfile.lock */; };
 		27A3962619FC8D4B0030B940 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A3962519FC8D4B0030B940 /* AppDelegate.swift */; };
 		27A3962B19FC8D4B0030B940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A3962919FC8D4B0030B940 /* Main.storyboard */; };
 		27A3962D19FC8D4B0030B940 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27A3962C19FC8D4B0030B940 /* Images.xcassets */; };
@@ -48,6 +49,7 @@
 		278800011A09AF0800B3BEB9 /* ChannelsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionViewController.swift; sourceTree = "<group>"; };
 		278800031A09AF1400B3BEB9 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		278800071A09B30100B3BEB9 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		279872021AE0753900EF32D1 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		27A3962019FC8D4B0030B940 /* Minitrees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minitrees.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A3962419FC8D4B0030B940 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A3962519FC8D4B0030B940 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				27A3962419FC8D4B0030B940 /* Info.plist */,
 				27A3964519FC96BE0030B940 /* Podfile */,
+				279872021AE0753900EF32D1 /* Podfile.lock */,
 				27A3964819FC99D60030B940 /* Minitrees-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
@@ -243,6 +246,7 @@
 			files = (
 				27A3962B19FC8D4B0030B940 /* Main.storyboard in Resources */,
 				27A3963019FC8D4B0030B940 /* LaunchScreen.xib in Resources */,
+				279872031AE0753900EF32D1 /* Podfile.lock in Resources */,
 				27A3964619FC96BE0030B940 /* Podfile in Resources */,
 				27A3962D19FC8D4B0030B940 /* Images.xcassets in Resources */,
 			);
