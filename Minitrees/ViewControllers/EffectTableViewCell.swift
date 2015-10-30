@@ -26,7 +26,7 @@ class EffectTableViewCell: UITableViewCell {
             }
         }
         RACSignal.merge([self.rac_valuesForKeyPath("effect", observer: self), Model.sharedInstance.rac_valuesForKeyPath("activeColorEffect", observer: self)]).subscribeNext { [unowned self] (_) in
-            println(Model.sharedInstance.activeColorEffect == self.effect)
+            print(Model.sharedInstance.activeColorEffect == self.effect)
             self.enabledIndicatorView.alpha = Model.sharedInstance.activeColorEffect == self.effect ? 1 : 0
         }
     }

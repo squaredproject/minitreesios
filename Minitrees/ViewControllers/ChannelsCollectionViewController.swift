@@ -15,7 +15,7 @@ class ChannelsCollectionViewController: UICollectionViewController {
         
         Model.sharedInstance.rac_valuesForKeyPath("channels", observer: self).subscribeNext { [unowned self] (_) in
             self.collectionView!.reloadData()
-            if self.collectionView!.indexPathsForSelectedItems().first == nil {
+            if self.collectionView!.indexPathsForSelectedItems()?.first == nil {
                 self.setSelectedItem()
             }
         }

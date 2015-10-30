@@ -32,7 +32,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     var autoconnect = false
     dynamic var connected: Bool = false {
         didSet {
-            println(connected ? "Connected" : "Disconnected")
+            print(connected ? "Connected" : "Disconnected")
         }
     }
     
@@ -65,7 +65,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     }
     
     func socket(socket: PKJSONSocket, didReceiveMessage dictionary: PKJSONSocketMessage) {
-        println(dictionary.dictionaryRepresentation())
+        print(dictionary.dictionaryRepresentation())
         if let method = dictionary.dictionaryRepresentation()["method"] as? String {
             if let params = dictionary.dictionaryRepresentation()["params"] as? Dictionary<String, AnyObject> {
                 switch method {
@@ -123,7 +123,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
             let currentPatternIndex = channelParams["currentPatternIndex"] as! Int
             let visibility = channelParams["visibility"] as! Float
             var patterns = [Pattern]()
-            for (index, patternParams) in enumerate(channelParams["patterns"] as! [Dictionary<String, AnyObject>]) {
+            for (_, patternParams) in (channelParams["patterns"] as! [Dictionary<String, AnyObject>]).enumerate() {
                 let patternIndex = patternParams["index"] as! Int
                 let name = patternParams["name"] as! String
                 patterns.append(Pattern(index: patternIndex, name: name))

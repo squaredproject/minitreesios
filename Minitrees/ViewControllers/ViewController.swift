@@ -25,7 +25,7 @@ class ViewController: UIViewController, NSNetServiceBrowserDelegate {
     
     func netServiceBrowser(aNetServiceBrowser: NSNetServiceBrowser, didFindService aNetService: NSNetService, moreComing: Bool) {
         if aNetService.type == bonjourServiceName {
-            println("got \(aNetService.addresses)")
+            print("got \(aNetService.addresses)")
         }
     }
 

@@ -39,7 +39,7 @@ class PatternsCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var pattern = Model.sharedInstance.patterns[indexPath.item]
+        let pattern = Model.sharedInstance.patterns[indexPath.item]
         if let channelSelectedOn = pattern.channelSelectedOn {
             channelSelectedOn.currentPattern = nil
         } else {

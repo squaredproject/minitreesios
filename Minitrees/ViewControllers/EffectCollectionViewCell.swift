@@ -15,7 +15,7 @@ class EffectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var enabledIndicatorView: UIView!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.rac_valuesForKeyPath("effect.name", observer: self).subscribeNext { [unowned self] (name: AnyObject?) in
