@@ -24,7 +24,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     }
     
     var socket: PKJSONSocket
-    var timer: NSTimer? {
+    var timer: Timer? {
         willSet {
             self.timer?.invalidate()
         }
@@ -38,7 +38,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     
     func connect() {
         self.autoconnect = true
-        self.socket.connectToHost("odroid.local", onPort: 5204, error: nil)
+        self.socket.connect(toHost: "odroid.local", onPort: 5204, error: nil)
     }
     
     func disconnect() {
@@ -47,24 +47,24 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         self.timer = nil
     }
     
-    func socket(socket: PKJSONSocket!, didConnectToHost host: String!) {
+    func socket(_ socket: PKJSONSocket!, didConnectToHost host: String!) {
         self.connected = true
         self.timer = nil
         ServerController.sharedInstance.loadModel()
     }
     
-    func socket(socket: PKJSONSocket!, didDisconnectWithError error: NSError!) {
+    func socket(_ socket: PKJSONSocket!, didDisconnectWithError error: Error!) {
         self.connected = false
         Model.sharedInstance.loaded = false
         if timer == nil {
             if self.autoconnect {
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "connect", userInfo: nil, repeats: true)
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ServerController.connect), userInfo: nil, repeats: true)
                 
             }
         }
     }
     
-    func socket(socket: PKJSONSocket, didReceiveMessage dictionary: PKJSONSocketMessage) {
+    func socket(_ socket: PKJSONSocket, didReceive dictionary: PKJSONSocketMessage) {
         print(dictionary.dictionaryRepresentation())
         if let method = dictionary.dictionaryRepresentation()["method"] as? String {
             if let params = dictionary.dictionaryRepresentation()["params"] as? Dictionary<String, AnyObject> {
@@ -106,7 +106,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         }
     }
     
-    func parseEffectsArray(effectsArray: [Dictionary<String, AnyObject>]) -> [Effect] {
+    func parseEffectsArray(_ effectsArray: [Dictionary<String, AnyObject>]) -> [Effect] {
         var effects = [Effect]()
         for effectParams in effectsArray {
             let index = effectParams["index"] as! Int
@@ -116,14 +116,14 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         return effects
     }
     
-    func parseChannelsArray(channelsArray: [Dictionary<String, AnyObject>]) -> [Channel] {
+    func parseChannelsArray(_ channelsArray: [Dictionary<String, AnyObject>]) -> [Channel] {
         var channels = [Channel]()
         for channelParams in channelsArray {
             let channelIndex = channelParams["index"] as! Int
             let currentPatternIndex = channelParams["currentPatternIndex"] as! Int
             let visibility = channelParams["visibility"] as! Float
             var patterns = [Pattern]()
-            for (_, patternParams) in (channelParams["patterns"] as! [Dictionary<String, AnyObject>]).enumerate() {
+            for (_, patternParams) in (channelParams["patterns"] as! [Dictionary<String, AnyObject>]).enumerated() {
                 let patternIndex = patternParams["index"] as! Int
                 let name = patternParams["name"] as! String
                 patterns.append(Pattern(index: patternIndex, name: name))
@@ -134,7 +134,7 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         return channels
     }
     
-    func send(method: String, params: Dictionary<String, AnyObject>? = nil) {
+    func send(_ method: String, params: Dictionary<String, AnyObject>? = nil) {
         if let params = params {
             socket.send(PKJSONSocketMessage(dictionary: ["method": method, "params": params]))
         } else {
@@ -146,37 +146,37 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         self.send("loadModel")
     }
     
-    func setAutoplay(autoplay: Bool) {
-        self.send("setAutoplay", params: ["autoplay": autoplay])
+    func setAutoplay(_ autoplay: Bool) {
+        self.send("setAutoplay", params: ["autoplay": autoplay as AnyObject])
     }
     
-    func setChannelPattern(channel: Channel) {
+    func setChannelPattern(_ channel: Channel) {
         let currentPatternIndex = channel.currentPattern == nil ? -1 : channel.currentPattern!.index
-        self.send("setChannelPattern", params: ["channelIndex": channel.index, "patternIndex": currentPatternIndex])
+        self.send("setChannelPattern", params: ["channelIndex": channel.index as AnyObject, "patternIndex": currentPatternIndex as AnyObject])
     }
     
-    func setChannelVisibility(channel: Channel) {
-        self.send("setChannelVisibility", params: ["channelIndex": channel.index, "visibility": channel.visibility])
+    func setChannelVisibility(_ channel: Channel) {
+        self.send("setChannelVisibility", params: ["channelIndex": channel.index as AnyObject, "visibility": channel.visibility as AnyObject])
     }
     
-    func setActiveColorEffect(activeColorEffectIndex: Int) {
-        self.send("setActiveColorEffect", params: ["effectIndex": activeColorEffectIndex])
+    func setActiveColorEffect(_ activeColorEffectIndex: Int) {
+        self.send("setActiveColorEffect", params: ["effectIndex": activeColorEffectIndex as AnyObject])
     }
     
-    func setSpeed(amount: Float) {
-        self.send("setSpeed", params: ["amount": amount])
+    func setSpeed(_ amount: Float) {
+        self.send("setSpeed", params: ["amount": amount as AnyObject])
     }
     
-    func setSpin(amount: Float) {
-        self.send("setSpin", params: ["amount": amount])
+    func setSpin(_ amount: Float) {
+        self.send("setSpin", params: ["amount": amount as AnyObject])
     }
     
-    func setBlur(amount: Float) {
-        self.send("setBlur", params: ["amount": amount])
+    func setBlur(_ amount: Float) {
+        self.send("setBlur", params: ["amount": amount as AnyObject])
     }
     
-    func setScramble(amount: Float) {
-        self.send("setScramble", params: ["amount": amount])
+    func setScramble(_ amount: Float) {
+        self.send("setScramble", params: ["amount": amount as AnyObject])
     }
    
 }

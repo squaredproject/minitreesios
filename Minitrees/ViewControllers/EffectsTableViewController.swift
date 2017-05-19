@@ -13,21 +13,21 @@ class EffectsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_valuesForKeyPath("colorEffects", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "colorEffects", observer: self).subscribeNext { [unowned self] (_) in
             self.tableView.reloadData()
         }
     }
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return Model.sharedInstance.colorEffects.count + 1
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! EffectTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EffectTableViewCell
 
         // Configure the cell...
         if indexPath.row == 0 {
@@ -39,7 +39,7 @@ class EffectsTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 || Model.sharedInstance.activeColorEffectIndex == indexPath.row - 1 {
             Model.sharedInstance.activeColorEffectIndex = -1
         } else {

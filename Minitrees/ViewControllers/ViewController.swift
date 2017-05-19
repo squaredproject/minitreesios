@@ -10,9 +10,9 @@ import UIKit
 
 let bonjourServiceName = "_minitree._tcp."
 
-class ViewController: UIViewController, NSNetServiceBrowserDelegate {
+class ViewController: UIViewController, NetServiceBrowserDelegate {
     
-    var serviceBrowser = NSNetServiceBrowser()
+    var serviceBrowser = NetServiceBrowser()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +20,13 @@ class ViewController: UIViewController, NSNetServiceBrowserDelegate {
         
         // Configure Service Browser
         self.serviceBrowser.delegate = self
-        self.serviceBrowser.searchForServicesOfType(bonjourServiceName, inDomain: "local.")
+        self.serviceBrowser.searchForServices(ofType: bonjourServiceName, inDomain: "local.")
     }
     
-    func netServiceBrowser(aNetServiceBrowser: NSNetServiceBrowser, didFindService aNetService: NSNetService, moreComing: Bool) {
-        if aNetService.type == bonjourServiceName {
-            print("got \(aNetService.addresses)")
+    func netServiceBrowser(_ aNetServiceBrowser: NetServiceBrowser, didFind aNetService: NetService, moreComing: Bool) {
+        if aNetService.type == bonjourServiceName,
+            let addresses = aNetService.addresses {
+            print("got \(addresses)")
         }
     }
 

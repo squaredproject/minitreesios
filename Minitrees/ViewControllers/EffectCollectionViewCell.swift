@@ -18,12 +18,12 @@ class EffectCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.rac_valuesForKeyPath("effect.name", observer: self).subscribeNext { [unowned self] (name: AnyObject?) in
+        self.rac_values(forKeyPath: "effect.name", observer: self).subscribeNext { [unowned self] (name: Any?) in
             if let name = name as? String {
                 self.nameLabel.text! = name
             }
         }
-        RACSignal.merge([self.rac_valuesForKeyPath("effect", observer: self), Model.sharedInstance.rac_valuesForKeyPath("activeColorEffect", observer: self)]).subscribeNext { [unowned self] (_) in
+        RACSignal.merge([self.rac_values(forKeyPath: "effect", observer: self), Model.sharedInstance.rac_values(forKeyPath: "activeColorEffect", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
             if self.effect != nil {
                 self.enabledIndicatorView.alpha = Model.sharedInstance.activeColorEffect == self.effect ? 1 : 0
             }

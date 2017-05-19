@@ -19,7 +19,7 @@ class DisplayState: NSObject {
     
     override init() {
         super.init()
-        Model.sharedInstance.rac_valuesForKeyPath("channels", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "channels", observer: self).subscribeNext { [unowned self] (_) in
             self.updateSelectedChannel()
         }
     }

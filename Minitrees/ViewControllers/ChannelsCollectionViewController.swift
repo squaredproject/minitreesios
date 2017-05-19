@@ -13,9 +13,9 @@ class ChannelsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_valuesForKeyPath("channels", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "channels", observer: self).subscribeNext { [unowned self] (_) in
             self.collectionView!.reloadData()
-            if self.collectionView!.indexPathsForSelectedItems()?.first == nil {
+            if self.collectionView!.indexPathsForSelectedItems?.first == nil {
                 self.setSelectedItem()
             }
         }
@@ -24,20 +24,20 @@ class ChannelsCollectionViewController: UICollectionViewController {
     func setSelectedItem() {
         let selectedItemIndex = DisplayState.sharedInstance.selectedChannelIndex
         
-        if selectedItemIndex >= 0 && selectedItemIndex < self.collectionView!.numberOfItemsInSection(0) {
-            self.collectionView!.selectItemAtIndexPath(NSIndexPath(forItem: selectedItemIndex, inSection: 0), animated: false, scrollPosition: .None)
+        if selectedItemIndex >= 0 && selectedItemIndex < self.collectionView!.numberOfItems(inSection: 0) {
+            self.collectionView!.selectItem(at: IndexPath(item: selectedItemIndex, section: 0), animated: false, scrollPosition: UICollectionViewScrollPosition())
         }
     }
 
     // MARK: UICollectionViewDataSource
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         return Model.sharedInstance.channels.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ChannelCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ChannelCollectionViewCell
     
         // Configure the cell
         cell.channel = Model.sharedInstance.channels[indexPath.item]
@@ -47,7 +47,7 @@ class ChannelsCollectionViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDelegate
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DisplayState.sharedInstance.selectedChannelIndex = indexPath.item
     }
 

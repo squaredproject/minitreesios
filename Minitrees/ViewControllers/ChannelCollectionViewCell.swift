@@ -25,58 +25,58 @@ class ChannelCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.visibilitySlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2));
+        self.visibilitySlider.transform = CGAffineTransform(rotationAngle: .pi/2);
         
-        RACSignal.merge([self.rac_valuesForKeyPath("channel", observer: self), DisplayState.sharedInstance.rac_valuesForKeyPath("selectedChannel", observer: self)]).subscribeNext { [unowned self] (_) in
+        RACSignal.merge([self.rac_values(forKeyPath: "channel", observer: self), DisplayState.sharedInstance.rac_values(forKeyPath: "selectedChannel", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
             self.currentlySelected = self.channel != nil && DisplayState.sharedInstance.selectedChannel != nil && self.channel == DisplayState.sharedInstance.selectedChannel
         }
         
-        self.rac_valuesForKeyPath("channel.index", observer: self).subscribeNext { [unowned self] (_) in
+        self.rac_values(forKeyPath: "channel.index", observer: self).subscribeNext { [unowned self] (_) in
             if self.channel != nil {
                 self.channelLabel.text = "Channel \(self.channel.index + 1)"
             }
         }
         
-        RACSignal.merge([self.rac_valuesForKeyPath("channel.index", observer: self), self.rac_valuesForKeyPath("channel.currentPattern", observer: self)]).subscribeNext { [unowned self] (_) in
+        RACSignal.merge([self.rac_values(forKeyPath: "channel.index", observer: self), self.rac_values(forKeyPath: "channel.currentPattern", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
             if self.channel != nil {
                 if self.channel.currentPattern == nil {
                     self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbGray"),
-                        forState: .Normal);
+                        for: UIControlState());
                     self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbGray"),
-                        forState: .Highlighted);
+                        for: .highlighted);
                     self.visibilitySlider.setMinimumTrackImage(UIImage(named: "channelSliderBarGray"),
-                        forState: .Normal);
+                        for: UIControlState());
                     self.visibilitySlider.setMaximumTrackImage(UIImage(named: "channelSliderBarGray"),
-                        forState: .Normal);
+                        for: UIControlState());
                 } else {
                     switch self.channel.index {
                     case 0:
                         self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbBlue"),
-                            forState: .Normal);
+                            for: UIControlState());
                         self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbBlue"),
-                            forState: .Highlighted);
+                            for: .highlighted);
                         self.visibilitySlider.setMinimumTrackImage(UIImage(named: "channelSliderBarBlue"),
-                            forState: .Normal);
+                            for: UIControlState());
                         self.visibilitySlider.setMaximumTrackImage(UIImage(named: "channelSliderBarDefault"),
-                            forState: .Normal);
+                            for: UIControlState());
                     case 1:
                         self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbOrange"),
-                            forState: .Normal);
+                            for: UIControlState());
                         self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbOrange"),
-                            forState: .Highlighted);
+                            for: .highlighted);
                         self.visibilitySlider.setMinimumTrackImage(UIImage(named: "channelSliderBarOrange"),
-                            forState: .Normal);
+                            for: UIControlState());
                         self.visibilitySlider.setMaximumTrackImage(UIImage(named: "channelSliderBarDefault"),
-                            forState: .Normal);
+                            for: UIControlState());
                     case 2:
                         self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbGreen"),
-                            forState: .Normal);
+                            for: UIControlState());
                         self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbGreen"),
-                            forState: .Highlighted);
+                            for: .highlighted);
                         self.visibilitySlider.setMinimumTrackImage(UIImage(named: "channelSliderBarGreen"),
-                            forState: .Normal);
+                            for: UIControlState());
                         self.visibilitySlider.setMaximumTrackImage(UIImage(named: "channelSliderBarDefault"),
-                            forState: .Normal);
+                            for: UIControlState());
                     default:
                         break;
                     }
@@ -84,25 +84,25 @@ class ChannelCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        self.rac_valuesForKeyPath("channel.currentPattern.name", observer: self).subscribeNext { [unowned self] (_) in
+        self.rac_values(forKeyPath: "channel.currentPattern.name", observer: self).subscribeNext { [unowned self] (_) in
             if self.channel != nil {
                 self.nameLabel.text = self.channel.currentPattern?.name
             }
         }
         
-        self.rac_valuesForKeyPath("currentlySelected", observer: self).subscribeNext { [unowned self] (_) in
+        self.rac_values(forKeyPath: "currentlySelected", observer: self).subscribeNext { [unowned self] (_) in
             if self.channel != nil {
-                self.selectedBlueImageView.hidden = true
-                self.selectedOrangeImageView.hidden = true
-                self.selectedGreenImageView.hidden = true
+                self.selectedBlueImageView.isHidden = true
+                self.selectedOrangeImageView.isHidden = true
+                self.selectedGreenImageView.isHidden = true
                 if self.currentlySelected {
                     switch self.channel.index {
                     case 0:
-                        self.selectedBlueImageView.hidden = false
+                        self.selectedBlueImageView.isHidden = false
                     case 1:
-                        self.selectedOrangeImageView.hidden = false
+                        self.selectedOrangeImageView.isHidden = false
                     case 2:
-                        self.selectedGreenImageView.hidden = false
+                        self.selectedGreenImageView.isHidden = false
                     default:
                         break;
                     }
@@ -110,31 +110,31 @@ class ChannelCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        self.rac_valuesForKeyPath("channel.visibility", observer: self).subscribeNext { [unowned self] (_) in
+        self.rac_values(forKeyPath: "channel.visibility", observer: self).subscribeNext { [unowned self] (_) in
             if self.channel != nil {
                 self.visibilitySlider.value = self.channel.visibility
             }
         }
         
-        RACSignal.merge([self.rac_valuesForKeyPath("channel.currentPattern.name", observer: self), self.rac_valuesForKeyPath("currentlySelected", observer: self), self.rac_valuesForKeyPath("channel.currentPattern", observer: self)]).subscribeNext { [unowned self] (_) in
+        RACSignal.merge([self.rac_values(forKeyPath: "channel.currentPattern.name", observer: self), self.rac_values(forKeyPath: "currentlySelected", observer: self), self.rac_values(forKeyPath: "channel.currentPattern", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
             if self.channel != nil {
-                self.nameLabel.hidden = true
-                self.channelLabel.hidden = true
-                self.tapAPatternLabel.hidden = true
-                self.visibilitySlider.userInteractionEnabled = false
+                self.nameLabel.isHidden = true
+                self.channelLabel.isHidden = true
+                self.tapAPatternLabel.isHidden = true
+                self.visibilitySlider.isUserInteractionEnabled = false
                 if self.channel.currentPattern != nil {
-                    self.nameLabel.hidden = false
-                    self.visibilitySlider.userInteractionEnabled = true
+                    self.nameLabel.isHidden = false
+                    self.visibilitySlider.isUserInteractionEnabled = true
                 } else if self.currentlySelected {
-                    self.tapAPatternLabel.hidden = false
+                    self.tapAPatternLabel.isHidden = false
                 } else {
-                    self.channelLabel.hidden = false
+                    self.channelLabel.isHidden = false
                 }
             }
         }
     }
     
-    @IBAction func channelVisibilityChanged(sender: AnyObject) {
+    @IBAction func channelVisibilityChanged(_ sender: AnyObject) {
         channel.visibility = self.visibilitySlider.value
         if !self.currentlySelected {
             DisplayState.sharedInstance.selectedChannelIndex = channel.index

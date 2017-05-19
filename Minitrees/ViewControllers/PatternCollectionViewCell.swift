@@ -22,32 +22,32 @@ class PatternCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.rac_valuesForKeyPath("pattern.name", observer: self).subscribeNext { [unowned self] (name: AnyObject?) in
+        self.rac_values(forKeyPath: "pattern.name", observer: self).subscribeNext { [unowned self] (name: Any?) in
             if let name = name as? String {
                 self.nameLabel.text! = name
             }
         }
         
-        self.rac_valuesForKeyPath("pattern.channelSelectedOn.index", observer: self).subscribeNext { [unowned self] (_) in
+        self.rac_values(forKeyPath: "pattern.channelSelectedOn.index", observer: self).subscribeNext { [unowned self] (_) in
             if self.pattern != nil {
-                self.deseletedImageView.hidden = true
-                self.selectedBlueImageView.hidden = true
-                self.selectedGreenImageView.hidden = true
-                self.selectedOrangeImageView.hidden = true
+                self.deseletedImageView.isHidden = true
+                self.selectedBlueImageView.isHidden = true
+                self.selectedGreenImageView.isHidden = true
+                self.selectedOrangeImageView.isHidden = true
                 
                 if let channel = self.pattern.channelSelectedOn {
                     switch channel.index {
                     case 0:
-                        self.selectedBlueImageView.hidden = false
+                        self.selectedBlueImageView.isHidden = false
                     case 1:
-                        self.selectedOrangeImageView.hidden = false
+                        self.selectedOrangeImageView.isHidden = false
                     case 2:
-                        self.selectedGreenImageView.hidden = false
+                        self.selectedGreenImageView.isHidden = false
                     default:
                         break;
                     }
                 } else {
-                    self.deseletedImageView.hidden = false
+                    self.deseletedImageView.isHidden = false
                 }
             }
         }

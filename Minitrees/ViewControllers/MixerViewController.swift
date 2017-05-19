@@ -29,63 +29,63 @@ class MixerViewController: UIViewController {
         
         ServerController.sharedInstance.connect()
         
-        Model.sharedInstance.rac_valuesForKeyPath("loaded", observer: self).subscribeNext { [unowned self] (_) in
-            self.connectingView.hidden = Model.sharedInstance.loaded
-            self.connectedView.hidden = !Model.sharedInstance.loaded
+        Model.sharedInstance.rac_values(forKeyPath: "loaded", observer: self).subscribeNext { [unowned self] (_) in
+            self.connectingView.isHidden = Model.sharedInstance.loaded
+            self.connectedView.isHidden = !Model.sharedInstance.loaded
         }
         
-        Model.sharedInstance.rac_valuesForKeyPath("autoplay", observer: self).subscribeNext { [unowned self] (_) in
-            self.autoplaySwitch.on = Model.sharedInstance.autoplay
+        Model.sharedInstance.rac_values(forKeyPath: "autoplay", observer: self).subscribeNext { [unowned self] (_) in
+            self.autoplaySwitch.isOn = Model.sharedInstance.autoplay
             
-            self.controllerView.hidden = Model.sharedInstance.autoplay
-            self.autoplayView.hidden = !Model.sharedInstance.autoplay
+            self.controllerView.isHidden = Model.sharedInstance.autoplay
+            self.autoplayView.isHidden = !Model.sharedInstance.autoplay
         }
         
-        Model.sharedInstance.rac_valuesForKeyPath("speed", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "speed", observer: self).subscribeNext { [unowned self] (_) in
             self.speedSlider.value = Model.sharedInstance.speed
         }
         
-        Model.sharedInstance.rac_valuesForKeyPath("spin", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "spin", observer: self).subscribeNext { [unowned self] (_) in
             self.spinSlider.value = Model.sharedInstance.spin
         }
         
-        Model.sharedInstance.rac_valuesForKeyPath("blur", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "blur", observer: self).subscribeNext { [unowned self] (_) in
             self.blurSlider.value = Model.sharedInstance.blur
         }
         
-        Model.sharedInstance.rac_valuesForKeyPath("scrambleEffect", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.rac_values(forKeyPath: "scrambleEffect", observer: self).subscribeNext { [unowned self] (_) in
             self.scrambleSlider.value = Model.sharedInstance.scrambleEffect
         }
         
         for slider in self.sliders {
             slider.setThumbImage(UIImage(named: "channelSliderThumbNormal"),
-                forState: .Normal);
+                for: UIControlState());
             slider.setThumbImage(UIImage(named: "channelSliderThumbNormal"),
-                forState: .Highlighted);
+                for: .highlighted);
             slider.setMinimumTrackImage(UIImage(named: "channelSliderBarNormalMin"),
-                forState: .Normal);
+                for: UIControlState());
             slider.setMaximumTrackImage(UIImage(named: "channelSliderBarNormalMax"),
-                forState: .Normal);
+                for: UIControlState());
         }
     }
     
-    @IBAction func autoplayChanged(sender: AnyObject) {
-        Model.sharedInstance.autoplay = self.autoplaySwitch.on
+    @IBAction func autoplayChanged(_ sender: AnyObject) {
+        Model.sharedInstance.autoplay = self.autoplaySwitch.isOn
     }
     
-    @IBAction func speedChanged(sender: AnyObject) {
+    @IBAction func speedChanged(_ sender: AnyObject) {
         Model.sharedInstance.speed = self.speedSlider.value
     }
     
-    @IBAction func spinChanged(sender: AnyObject) {
+    @IBAction func spinChanged(_ sender: AnyObject) {
         Model.sharedInstance.spin = self.spinSlider.value
     }
     
-    @IBAction func blurChanged(sender: AnyObject) {
+    @IBAction func blurChanged(_ sender: AnyObject) {
         Model.sharedInstance.blur = self.blurSlider.value
     }
     
-    @IBAction func scrambleChanged(sender: AnyObject) {
+    @IBAction func scrambleChanged(_ sender: AnyObject) {
         Model.sharedInstance.scrambleEffect = self.scrambleSlider.value
     }
 
