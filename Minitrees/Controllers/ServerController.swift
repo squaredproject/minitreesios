@@ -38,7 +38,9 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     
     func connect() {
         self.autoconnect = true
-        self.socket.connect(toHost: "odroid.local", onPort: 5204, error: nil)
+        // "squared.intensepc.local" for big squared
+        // "odroid.local" for squared mini
+        self.socket.connect(toHost: "squared-intensepc.local", onPort: 5204, error: nil)
     }
     
     func disconnect() {
