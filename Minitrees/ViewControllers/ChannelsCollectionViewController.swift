@@ -32,14 +32,12 @@ class ChannelsCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
         return Model.sharedInstance.channels.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ChannelCollectionViewCell
     
-        // Configure the cell
         cell.channel = Model.sharedInstance.channels[indexPath.item]
     
         return cell

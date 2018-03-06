@@ -21,15 +21,12 @@ class EffectsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return Model.sharedInstance.colorEffects.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EffectTableViewCell
 
-        // Configure the cell...
         if indexPath.row == 0 {
             cell.effect = nil
         } else {

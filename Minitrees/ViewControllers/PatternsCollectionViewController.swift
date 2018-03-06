@@ -23,14 +23,12 @@ class PatternsCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
         return Model.sharedInstance.patterns.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PatternCollectionViewCell
         
-        // Configure the cell
         cell.pattern = Model.sharedInstance.patterns[indexPath.item]
     
         return cell

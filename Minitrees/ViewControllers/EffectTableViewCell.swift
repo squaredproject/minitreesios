@@ -27,7 +27,6 @@ class EffectTableViewCell: UITableViewCell {
             }
         }
         SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(effect)), Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.activeColorEffect))]).startWithValues { [unowned self] (_) in
-            print(Model.sharedInstance.activeColorEffect == self.effect)
             self.enabledIndicatorView.alpha = Model.sharedInstance.activeColorEffect == self.effect ? 1 : 0
         }
     }
