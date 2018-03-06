@@ -17,22 +17,30 @@ class Model: NSObject {
         return Static.instance
     }
     
-    dynamic var isIniting = false
-    dynamic var loaded = false
+    var isIniting = false
+    @objc dynamic var loaded = false
     
-    dynamic var autoplay: Bool = false {
+    @objc dynamic var autoplay: Bool = false {
         didSet {
             if !self.isIniting {
-                ServerController.sharedInstance.setAutoplay(self.autoplay)
+                ServerController.sharedInstance.setAutoplay(autoplay)
             }
         }
     }
     
-    dynamic var channels: [Channel] = []
-    dynamic var patterns: [Pattern] = []
+    @objc dynamic var brightness: Float = 0 {
+        didSet {
+            if !self.isIniting {
+                ServerController.sharedInstance.setBrightness(brightness)
+            }
+        }
+    }
     
-    dynamic var colorEffects: [Effect] = []
-    dynamic var activeColorEffectIndex: Int = -1 {
+    @objc dynamic var channels: [Channel] = []
+    @objc dynamic var patterns: [Pattern] = []
+    
+    @objc dynamic var colorEffects: [Effect] = []
+    var activeColorEffectIndex: Int = -1 {
         didSet {
             self.activeColorEffect = activeColorEffectIndex == -1 ? nil : colorEffects[self.activeColorEffectIndex]
             if !self.isIniting {
@@ -40,30 +48,23 @@ class Model: NSObject {
             }
         }
     }
-    dynamic var activeColorEffect: Effect?
+    @objc dynamic var activeColorEffect: Effect?
     
-    dynamic var speed: Float = 0 {
+    @objc dynamic var speed: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpeed(self.speed)
             }
         }
     }
-    dynamic var spin: Float = 0 {
+    @objc dynamic var spin: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpin(self.spin)
             }
         }
     }
-    dynamic var scrambleEffect: Float = 0 {
-        didSet {
-            if !self.isIniting {
-                ServerController.sharedInstance.setScramble(self.scrambleEffect)
-            }
-        }
-    }
-    dynamic var blur: Float = 0 {
+    @objc dynamic var blur: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setBlur(self.blur)

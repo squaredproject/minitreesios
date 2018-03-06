@@ -15,7 +15,7 @@ class PatternsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_values(forKeyPath: "patterns", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.patterns)).startWithValues { [unowned self] (_) in
             self.collectionView!.reloadData()
         }
     }
@@ -23,14 +23,12 @@ class PatternsCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
         return Model.sharedInstance.patterns.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PatternCollectionViewCell
         
-        // Configure the cell
         cell.pattern = Model.sharedInstance.patterns[indexPath.item]
     
         return cell

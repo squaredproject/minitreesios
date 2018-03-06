@@ -13,7 +13,7 @@ class EffectsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_values(forKeyPath: "colorEffects", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.colorEffects)).startWithValues { [unowned self] (_) in
             self.tableView.reloadData()
         }
     }
@@ -21,15 +21,12 @@ class EffectsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return Model.sharedInstance.colorEffects.count + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EffectTableViewCell
 
-        // Configure the cell...
         if indexPath.row == 0 {
             cell.effect = nil
         } else {

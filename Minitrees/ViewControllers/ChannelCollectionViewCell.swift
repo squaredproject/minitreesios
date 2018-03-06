@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import ReactiveSwift
 
 class ChannelCollectionViewCell: UICollectionViewCell {
     
-    dynamic var channel: Channel!
-    dynamic var currentlySelected = false
+    @objc dynamic var channel: Channel!
+    @objc dynamic var currentlySelected = false
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var channelLabel: UILabel!
@@ -25,19 +26,19 @@ class ChannelCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.visibilitySlider.transform = CGAffineTransform(rotationAngle: .pi/2);
+        self.visibilitySlider.transform = CGAffineTransform(rotationAngle: -.pi/2);
         
-        RACSignal.merge([self.rac_values(forKeyPath: "channel", observer: self), DisplayState.sharedInstance.rac_values(forKeyPath: "selectedChannel", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
+        SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(channel)), DisplayState.sharedInstance.reactive.producer(forKeyPath: #keyPath(DisplayState.selectedChannel))]).startWithValues { [unowned self] (_) in
             self.currentlySelected = self.channel != nil && DisplayState.sharedInstance.selectedChannel != nil && self.channel == DisplayState.sharedInstance.selectedChannel
         }
         
-        self.rac_values(forKeyPath: "channel.index", observer: self).subscribeNext { [unowned self] (_) in
+        self.reactive.producer(forKeyPath: #keyPath(channel.index)).startWithValues { [unowned self] (_) in
             if self.channel != nil {
                 self.channelLabel.text = "Channel \(self.channel.index + 1)"
             }
         }
         
-        RACSignal.merge([self.rac_values(forKeyPath: "channel.index", observer: self), self.rac_values(forKeyPath: "channel.currentPattern", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
+        SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(channel.index)), self.reactive.producer(forKeyPath: #keyPath(channel.currentPattern))]).startWithValues { [unowned self] (_) in
             if self.channel != nil {
                 if self.channel.currentPattern == nil {
                     self.visibilitySlider.setThumbImage(UIImage(named: "channelSliderThumbGray"),
@@ -84,13 +85,13 @@ class ChannelCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        self.rac_values(forKeyPath: "channel.currentPattern.name", observer: self).subscribeNext { [unowned self] (_) in
+        self.reactive.producer(forKeyPath: #keyPath(channel.currentPattern.name)).startWithValues { [unowned self] (_) in
             if self.channel != nil {
                 self.nameLabel.text = self.channel.currentPattern?.name
             }
         }
         
-        self.rac_values(forKeyPath: "currentlySelected", observer: self).subscribeNext { [unowned self] (_) in
+        self.reactive.producer(forKeyPath: #keyPath(currentlySelected)).startWithValues { [unowned self] (_) in
             if self.channel != nil {
                 self.selectedBlueImageView.isHidden = true
                 self.selectedOrangeImageView.isHidden = true
@@ -110,13 +111,13 @@ class ChannelCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        self.rac_values(forKeyPath: "channel.visibility", observer: self).subscribeNext { [unowned self] (_) in
+        self.reactive.producer(forKeyPath: #keyPath(channel.visibility)).startWithValues { [unowned self] (_) in
             if self.channel != nil {
                 self.visibilitySlider.value = self.channel.visibility
             }
         }
         
-        RACSignal.merge([self.rac_values(forKeyPath: "channel.currentPattern.name", observer: self), self.rac_values(forKeyPath: "currentlySelected", observer: self), self.rac_values(forKeyPath: "channel.currentPattern", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
+        SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(channel.currentPattern.name)), self.reactive.producer(forKeyPath: #keyPath(currentlySelected)), self.reactive.producer(forKeyPath: #keyPath(channel.currentPattern))]).startWithValues { [unowned self] (_) in
             if self.channel != nil {
                 self.nameLabel.isHidden = true
                 self.channelLabel.isHidden = true

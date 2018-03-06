@@ -19,12 +19,12 @@ class DisplayState: NSObject {
     
     override init() {
         super.init()
-        Model.sharedInstance.rac_values(forKeyPath: "channels", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.channels)).startWithValues { [unowned self] (_) in
             self.updateSelectedChannel()
         }
     }
     
-    dynamic var selectedChannelIndex: Int = 0 {
+    var selectedChannelIndex: Int = 0 {
         didSet {
             self.updateSelectedChannel()
         }
@@ -38,6 +38,6 @@ class DisplayState: NSObject {
             self.selectedChannel = nil
         }
     }
-    dynamic var selectedChannel: Channel?
+    @objc dynamic var selectedChannel: Channel?
    
 }
