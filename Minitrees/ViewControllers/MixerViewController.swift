@@ -16,11 +16,12 @@ class MixerViewController: UIViewController {
     @IBOutlet weak var autoplayView: UIView!
     
     @IBOutlet weak var autoplaySwitch: UISwitch!
+    @IBOutlet weak var brightnessSlider: UISlider!
     
     @IBOutlet weak var speedSlider: UISlider!
     @IBOutlet weak var spinSlider: UISlider!
     @IBOutlet weak var blurSlider: UISlider!
-    @IBOutlet weak var scrambleSlider: UISlider!
+    @IBOutlet weak var brightnessEffectSlider: UISlider!
     
     @IBOutlet var sliders: [UISlider]!
     
@@ -29,32 +30,33 @@ class MixerViewController: UIViewController {
         
         ServerController.sharedInstance.connect()
         
-        Model.sharedInstance.rac_values(forKeyPath: "loaded", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
             self.connectingView.isHidden = Model.sharedInstance.loaded
             self.connectedView.isHidden = !Model.sharedInstance.loaded
         }
         
-        Model.sharedInstance.rac_values(forKeyPath: "autoplay", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.autoplay)).startWithValues { [unowned self] (_) in
             self.autoplaySwitch.isOn = Model.sharedInstance.autoplay
             
             self.controllerView.isHidden = Model.sharedInstance.autoplay
             self.autoplayView.isHidden = !Model.sharedInstance.autoplay
         }
         
-        Model.sharedInstance.rac_values(forKeyPath: "speed", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.brightness)).startWithValues { [unowned self] (_) in
+            self.brightnessSlider.value = Model.sharedInstance.brightness
+            self.brightnessEffectSlider.value = Model.sharedInstance.brightness
+        }
+        
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.speed)).startWithValues { [unowned self] (_) in
             self.speedSlider.value = Model.sharedInstance.speed
         }
         
-        Model.sharedInstance.rac_values(forKeyPath: "spin", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.spin)).startWithValues { [unowned self] (_) in
             self.spinSlider.value = Model.sharedInstance.spin
         }
         
-        Model.sharedInstance.rac_values(forKeyPath: "blur", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.blur)).startWithValues { [unowned self] (_) in
             self.blurSlider.value = Model.sharedInstance.blur
-        }
-        
-        Model.sharedInstance.rac_values(forKeyPath: "scrambleEffect", observer: self).subscribeNext { [unowned self] (_) in
-            self.scrambleSlider.value = Model.sharedInstance.scrambleEffect
         }
         
         for slider in self.sliders {
@@ -73,6 +75,10 @@ class MixerViewController: UIViewController {
         Model.sharedInstance.autoplay = self.autoplaySwitch.isOn
     }
     
+    @IBAction func brightnessChanged(_ sender: UISlider) {
+        Model.sharedInstance.brightness = sender.value
+    }
+    
     @IBAction func speedChanged(_ sender: AnyObject) {
         Model.sharedInstance.speed = self.speedSlider.value
     }
@@ -83,10 +89,6 @@ class MixerViewController: UIViewController {
     
     @IBAction func blurChanged(_ sender: AnyObject) {
         Model.sharedInstance.blur = self.blurSlider.value
-    }
-    
-    @IBAction func scrambleChanged(_ sender: AnyObject) {
-        Model.sharedInstance.scrambleEffect = self.scrambleSlider.value
     }
 
 }

@@ -2,8 +2,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 inhibit_all_warnings!
+use_frameworks!
 
 target 'Minitrees' do
-  pod 'PKJSONSocket', '~> 0.0.3'
-  pod 'ReactiveCocoa', '~> 2.3'
+  pod 'PKJSONSocket', git: 'https://github.com/kylefleming/PKJSONSocket.git'
+  pod 'ReactiveSwift', '~> 3.1'
+  pod 'ReactiveCocoa', '~> 7.1'
 end
