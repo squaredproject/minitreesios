@@ -31,13 +31,13 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         }
     }
     var autoconnect = false
-    dynamic var connected: Bool = false {
+    var connected: Bool = false {
         didSet {
             print(connected ? "Connected" : "Disconnected")
         }
     }
     
-    func connect() {
+    @objc func connect() {
         self.autoconnect = true
         self.socket.connect(toHost: "odroid.local", onPort: 5204, error: nil)
     }

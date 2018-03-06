@@ -24,7 +24,7 @@ class DisplayState: NSObject {
         }
     }
     
-    dynamic var selectedChannelIndex: Int = 0 {
+    var selectedChannelIndex: Int = 0 {
         didSet {
             self.updateSelectedChannel()
         }
@@ -38,6 +38,6 @@ class DisplayState: NSObject {
             self.selectedChannel = nil
         }
     }
-    dynamic var selectedChannel: Channel?
+    @objc var selectedChannel: Channel?
    
 }

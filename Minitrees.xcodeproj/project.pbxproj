@@ -218,7 +218,7 @@
 					27A3961F19FC8D4B0030B940 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 2YDE3E6GBP;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 					};
 				};
 			};
@@ -462,7 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.kylefleming.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -478,7 +478,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.kylefleming.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

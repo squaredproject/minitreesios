@@ -11,8 +11,8 @@ import ReactiveCocoa
 
 class PatternCollectionViewCell: UICollectionViewCell {
     
-    dynamic var pattern: Pattern!
-    dynamic var currentlySelected = false
+    @objc var pattern: Pattern!
+    var currentlySelected = false
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var deseletedImageView: UIImageView!

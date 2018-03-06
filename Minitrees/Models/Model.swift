@@ -17,10 +17,10 @@ class Model: NSObject {
         return Static.instance
     }
     
-    dynamic var isIniting = false
-    dynamic var loaded = false
+    var isIniting = false
+    @objc var loaded = false
     
-    dynamic var autoplay: Bool = false {
+    @objc var autoplay: Bool = false {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setAutoplay(self.autoplay)
@@ -28,11 +28,11 @@ class Model: NSObject {
         }
     }
     
-    dynamic var channels: [Channel] = []
-    dynamic var patterns: [Pattern] = []
+    @objc var channels: [Channel] = []
+    @objc var patterns: [Pattern] = []
     
-    dynamic var colorEffects: [Effect] = []
-    dynamic var activeColorEffectIndex: Int = -1 {
+    @objc var colorEffects: [Effect] = []
+    var activeColorEffectIndex: Int = -1 {
         didSet {
             self.activeColorEffect = activeColorEffectIndex == -1 ? nil : colorEffects[self.activeColorEffectIndex]
             if !self.isIniting {
@@ -40,30 +40,30 @@ class Model: NSObject {
             }
         }
     }
-    dynamic var activeColorEffect: Effect?
+    @objc var activeColorEffect: Effect?
     
-    dynamic var speed: Float = 0 {
+    @objc var speed: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpeed(self.speed)
             }
         }
     }
-    dynamic var spin: Float = 0 {
+    @objc var spin: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpin(self.spin)
             }
         }
     }
-    dynamic var scrambleEffect: Float = 0 {
+    @objc var scrambleEffect: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setScramble(self.scrambleEffect)
             }
         }
     }
-    dynamic var blur: Float = 0 {
+    @objc var blur: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setBlur(self.blur)

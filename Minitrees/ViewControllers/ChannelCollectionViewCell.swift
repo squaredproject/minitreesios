@@ -11,8 +11,8 @@ import ReactiveSwift
 
 class ChannelCollectionViewCell: UICollectionViewCell {
     
-    dynamic var channel: Channel!
-    dynamic var currentlySelected = false
+    @objc var channel: Channel!
+    @objc var currentlySelected = false
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var channelLabel: UILabel!
