@@ -75,6 +75,9 @@ class ServerController: NSObject, PKJSONSocketDelegate {
                     if let autoplay = params["autoplay"] as? Bool {
                         Model.sharedInstance.autoplay = autoplay
                     }
+                    if let brightness = params["brightness"] as? Float {
+                        Model.sharedInstance.brightness = brightness
+                    }
                     if let colorEffectsArray = params["colorEffects"] as? [Dictionary<String, AnyObject>] {
                         Model.sharedInstance.colorEffects = parseEffectsArray(colorEffectsArray)
                     }
@@ -90,9 +93,6 @@ class ServerController: NSObject, PKJSONSocketDelegate {
                     }
                     if let spin = params["spin"] as? Float {
                         Model.sharedInstance.spin = spin
-                    }
-                    if let scrambleEffect = params["scramble"] as? Float {
-                        Model.sharedInstance.scrambleEffect = scrambleEffect
                     }
                     if let blur = params["blur"] as? Float {
                         Model.sharedInstance.blur = blur
@@ -151,6 +151,10 @@ class ServerController: NSObject, PKJSONSocketDelegate {
         self.send("setAutoplay", params: ["autoplay": autoplay as AnyObject])
     }
     
+    func setBrightness(_ brightness: Float) {
+        self.send("setBrightness", params: ["brightness": brightness as AnyObject])
+    }
+    
     func setChannelPattern(_ channel: Channel) {
         let currentPatternIndex = channel.currentPattern == nil ? -1 : channel.currentPattern!.index
         self.send("setChannelPattern", params: ["channelIndex": channel.index as AnyObject, "patternIndex": currentPatternIndex as AnyObject])
@@ -174,10 +178,6 @@ class ServerController: NSObject, PKJSONSocketDelegate {
     
     func setBlur(_ amount: Float) {
         self.send("setBlur", params: ["amount": amount as AnyObject])
-    }
-    
-    func setScramble(_ amount: Float) {
-        self.send("setScramble", params: ["amount": amount as AnyObject])
     }
    
 }

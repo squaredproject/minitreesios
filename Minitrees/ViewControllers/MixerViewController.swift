@@ -16,11 +16,12 @@ class MixerViewController: UIViewController {
     @IBOutlet weak var autoplayView: UIView!
     
     @IBOutlet weak var autoplaySwitch: UISwitch!
+    @IBOutlet weak var brightnessSlider: UISlider!
     
     @IBOutlet weak var speedSlider: UISlider!
     @IBOutlet weak var spinSlider: UISlider!
     @IBOutlet weak var blurSlider: UISlider!
-    @IBOutlet weak var scrambleSlider: UISlider!
+    @IBOutlet weak var brightnessEffectSlider: UISlider!
     
     @IBOutlet var sliders: [UISlider]!
     
@@ -41,6 +42,11 @@ class MixerViewController: UIViewController {
             self.autoplayView.isHidden = !Model.sharedInstance.autoplay
         }
         
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.brightness)).startWithValues { [unowned self] (_) in
+            self.brightnessSlider.value = Model.sharedInstance.brightness
+            self.brightnessEffectSlider.value = Model.sharedInstance.brightness
+        }
+        
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.speed)).startWithValues { [unowned self] (_) in
             self.speedSlider.value = Model.sharedInstance.speed
         }
@@ -51,10 +57,6 @@ class MixerViewController: UIViewController {
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.blur)).startWithValues { [unowned self] (_) in
             self.blurSlider.value = Model.sharedInstance.blur
-        }
-        
-        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.scrambleEffect)).startWithValues { [unowned self] (_) in
-            self.scrambleSlider.value = Model.sharedInstance.scrambleEffect
         }
         
         for slider in self.sliders {
@@ -73,6 +75,10 @@ class MixerViewController: UIViewController {
         Model.sharedInstance.autoplay = self.autoplaySwitch.isOn
     }
     
+    @IBAction func brightnessChanged(_ sender: UISlider) {
+        Model.sharedInstance.brightness = sender.value
+    }
+    
     @IBAction func speedChanged(_ sender: AnyObject) {
         Model.sharedInstance.speed = self.speedSlider.value
     }
@@ -83,10 +89,6 @@ class MixerViewController: UIViewController {
     
     @IBAction func blurChanged(_ sender: AnyObject) {
         Model.sharedInstance.blur = self.blurSlider.value
-    }
-    
-    @IBAction func scrambleChanged(_ sender: AnyObject) {
-        Model.sharedInstance.scrambleEffect = self.scrambleSlider.value
     }
 
 }

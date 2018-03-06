@@ -28,6 +28,14 @@ class Model: NSObject {
         }
     }
     
+    @objc dynamic var brightness: Float = 0 {
+        didSet {
+            if !self.isIniting {
+                ServerController.sharedInstance.setBrightness(brightness)
+            }
+        }
+    }
+    
     @objc dynamic var channels: [Channel] = []
     @objc dynamic var patterns: [Pattern] = []
     
@@ -53,13 +61,6 @@ class Model: NSObject {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpin(self.spin)
-            }
-        }
-    }
-    @objc var scrambleEffect: Float = 0 {
-        didSet {
-            if !self.isIniting {
-                ServerController.sharedInstance.setScramble(self.scrambleEffect)
             }
         }
     }
