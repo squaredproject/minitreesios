@@ -28,7 +28,7 @@
 		27B556941A05D2FB00CEE159 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B556931A05D2FB00CEE159 /* MixerViewController.swift */; };
 		27BB0A4B1A03A7C100D37664 /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB0A4A1A03A7C100D37664 /* DisplayState.swift */; };
 		27BB0A4F1A03CBB300D37664 /* EffectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB0A4E1A03CBB300D37664 /* EffectCollectionViewCell.swift */; };
-		714AEA415138AB6BAFD8C514 /* libPods-Minitrees.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A507640CAD4648E8D7E747DB /* libPods-Minitrees.a */; };
+		9E3396553FE7C3F2552A41BB /* Pods_Minitrees.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976BD787B81FECA798D130E8 /* Pods_Minitrees.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,11 +56,10 @@
 		27A3962C19FC8D4B0030B940 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		27A3962F19FC8D4B0030B940 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		27A3964519FC96BE0030B940 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		27A3964819FC99D60030B940 /* Minitrees-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Minitrees-Bridging-Header.h"; sourceTree = "<group>"; };
 		27B556931A05D2FB00CEE159 /* MixerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
 		27BB0A4A1A03A7C100D37664 /* DisplayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		27BB0A4E1A03CBB300D37664 /* EffectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectCollectionViewCell.swift; sourceTree = "<group>"; };
-		A507640CAD4648E8D7E747DB /* libPods-Minitrees.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Minitrees.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		976BD787B81FECA798D130E8 /* Pods_Minitrees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minitrees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3AA172CBABA9850C7CF367 /* Pods-Minitrees.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minitrees.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minitrees/Pods-Minitrees.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714AEA415138AB6BAFD8C514 /* libPods-Minitrees.a in Frameworks */,
+				9E3396553FE7C3F2552A41BB /* Pods_Minitrees.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +161,6 @@
 				27A3962419FC8D4B0030B940 /* Info.plist */,
 				27A3964519FC96BE0030B940 /* Podfile */,
 				279872021AE0753900EF32D1 /* Podfile.lock */,
-				27A3964819FC99D60030B940 /* Minitrees-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,7 +177,7 @@
 		9142B856483D820EC2B6ECCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A507640CAD4648E8D7E747DB /* libPods-Minitrees.a */,
+				976BD787B81FECA798D130E8 /* Pods_Minitrees.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,9 +262,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Minitrees/Pods-Minitrees-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/PKJSONSocket/PKJSONSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKJSONSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,7 +462,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.kylefleming.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Minitrees/Minitrees-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -470,7 +478,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.kylefleming.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Minitrees/Minitrees-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

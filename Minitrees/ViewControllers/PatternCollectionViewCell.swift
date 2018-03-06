@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class PatternCollectionViewCell: UICollectionViewCell {
     
@@ -22,13 +23,13 @@ class PatternCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.rac_values(forKeyPath: "pattern.name", observer: self).subscribeNext { [unowned self] (name: Any?) in
+        self.reactive.producer(forKeyPath: #keyPath(pattern.name)).startWithValues { [unowned self] (name: Any?) in
             if let name = name as? String {
                 self.nameLabel.text! = name
             }
         }
         
-        self.rac_values(forKeyPath: "pattern.channelSelectedOn.index", observer: self).subscribeNext { [unowned self] (_) in
+        self.reactive.producer(forKeyPath: #keyPath(pattern.channelSelectedOn.index)).startWithValues { [unowned self] (_) in
             if self.pattern != nil {
                 self.deseletedImageView.isHidden = true
                 self.selectedBlueImageView.isHidden = true

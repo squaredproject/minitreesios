@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKJSONSocket
 
 class ServerController: NSObject, PKJSONSocketDelegate {
     

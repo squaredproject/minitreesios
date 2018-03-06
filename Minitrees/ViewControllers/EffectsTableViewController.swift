@@ -13,7 +13,7 @@ class EffectsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_values(forKeyPath: "colorEffects", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.colorEffects)).startWithValues { [unowned self] (_) in
             self.tableView.reloadData()
         }
     }

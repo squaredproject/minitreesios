@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveSwift
 
 class EffectCollectionViewCell: UICollectionViewCell {
     
@@ -18,12 +19,12 @@ class EffectCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.rac_values(forKeyPath: "effect.name", observer: self).subscribeNext { [unowned self] (name: Any?) in
+        self.reactive.producer(forKeyPath: #keyPath(effect.name)).startWithValues { [unowned self] (name: Any?) in
             if let name = name as? String {
                 self.nameLabel.text! = name
             }
         }
-        RACSignal.merge([self.rac_values(forKeyPath: "effect", observer: self), Model.sharedInstance.rac_values(forKeyPath: "activeColorEffect", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
+        SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(effect)), Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.activeColorEffect))]).startWithValues { [unowned self] (_) in
             if self.effect != nil {
                 self.enabledIndicatorView.alpha = Model.sharedInstance.activeColorEffect == self.effect ? 1 : 0
             }

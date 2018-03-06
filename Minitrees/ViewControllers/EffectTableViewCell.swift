@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveSwift
 
 class EffectTableViewCell: UITableViewCell {
     
@@ -18,14 +19,14 @@ class EffectTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.rac_values(forKeyPath: "effect.name", observer: self).subscribeNext { [unowned self] (name: Any?) in
+        self.reactive.producer(forKeyPath: #keyPath(effect.name)).startWithValues { [unowned self] (name: Any?) in
             if let name = name as? String {
                 self.nameLabel.text = name
             } else {
                 self.nameLabel.text = "None"
             }
         }
-        RACSignal.merge([self.rac_values(forKeyPath: "effect", observer: self), Model.sharedInstance.rac_values(forKeyPath: "activeColorEffect", observer: self)] as NSArray).subscribeNext { [unowned self] (_) in
+        SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(effect)), Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.activeColorEffect))]).startWithValues { [unowned self] (_) in
             print(Model.sharedInstance.activeColorEffect == self.effect)
             self.enabledIndicatorView.alpha = Model.sharedInstance.activeColorEffect == self.effect ? 1 : 0
         }

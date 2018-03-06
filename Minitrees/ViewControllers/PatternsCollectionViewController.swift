@@ -15,7 +15,7 @@ class PatternsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_values(forKeyPath: "patterns", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.patterns)).startWithValues { [unowned self] (_) in
             self.collectionView!.reloadData()
         }
     }

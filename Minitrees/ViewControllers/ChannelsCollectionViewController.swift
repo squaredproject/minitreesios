@@ -13,7 +13,7 @@ class ChannelsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Model.sharedInstance.rac_values(forKeyPath: "channels", observer: self).subscribeNext { [unowned self] (_) in
+        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.channels)).startWithValues { [unowned self] (_) in
             self.collectionView!.reloadData()
             if self.collectionView!.indexPathsForSelectedItems?.first == nil {
                 self.setSelectedItem()
