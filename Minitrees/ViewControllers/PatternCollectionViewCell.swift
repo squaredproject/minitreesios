@@ -11,7 +11,7 @@ import ReactiveCocoa
 
 class PatternCollectionViewCell: UICollectionViewCell {
     
-    @objc var pattern: Pattern!
+    @objc dynamic var pattern: Pattern!
     var currentlySelected = false
     
     @IBOutlet weak var nameLabel: UILabel!

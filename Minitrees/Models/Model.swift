@@ -18,20 +18,20 @@ class Model: NSObject {
     }
     
     var isIniting = false
-    @objc var loaded = false
+    @objc dynamic var loaded = false
     
-    @objc var autoplay: Bool = false {
+    @objc dynamic var autoplay: Bool = false {
         didSet {
             if !self.isIniting {
-                ServerController.sharedInstance.setAutoplay(self.autoplay)
+                ServerController.sharedInstance.setAutoplay(autoplay)
             }
         }
     }
     
-    @objc var channels: [Channel] = []
-    @objc var patterns: [Pattern] = []
+    @objc dynamic var channels: [Channel] = []
+    @objc dynamic var patterns: [Pattern] = []
     
-    @objc var colorEffects: [Effect] = []
+    @objc dynamic var colorEffects: [Effect] = []
     var activeColorEffectIndex: Int = -1 {
         didSet {
             self.activeColorEffect = activeColorEffectIndex == -1 ? nil : colorEffects[self.activeColorEffectIndex]
@@ -40,16 +40,16 @@ class Model: NSObject {
             }
         }
     }
-    @objc var activeColorEffect: Effect?
+    @objc dynamic var activeColorEffect: Effect?
     
-    @objc var speed: Float = 0 {
+    @objc dynamic var speed: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpeed(self.speed)
             }
         }
     }
-    @objc var spin: Float = 0 {
+    @objc dynamic var spin: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setSpin(self.spin)
@@ -63,7 +63,7 @@ class Model: NSObject {
             }
         }
     }
-    @objc var blur: Float = 0 {
+    @objc dynamic var blur: Float = 0 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setBlur(self.blur)

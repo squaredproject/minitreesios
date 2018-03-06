@@ -16,6 +16,6 @@ class Effect: NSObject {
     }
     
     let index: Int
-    @objc let name: String
+    @objc dynamic let name: String
    
 }

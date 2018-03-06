@@ -38,6 +38,6 @@ class DisplayState: NSObject {
             self.selectedChannel = nil
         }
     }
-    @objc var selectedChannel: Channel?
+    @objc dynamic var selectedChannel: Channel?
    
 }

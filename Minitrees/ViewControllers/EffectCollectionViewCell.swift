@@ -11,7 +11,7 @@ import ReactiveSwift
 
 class EffectCollectionViewCell: UICollectionViewCell {
     
-    @objc var effect: Effect!
+    @objc dynamic var effect: Effect!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var enabledIndicatorView: UIView!

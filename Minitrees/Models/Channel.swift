@@ -22,10 +22,10 @@ class Channel: NSObject {
         self.updateCurrentPattern()
     }
     
-    @objc let index: Int
+    @objc dynamic let index: Int
     var patterns: [Pattern]
     
-    @objc var currentPattern: Pattern? {
+    @objc dynamic var currentPattern: Pattern? {
         willSet {
             self.currentPattern?.channelSelectedOn = nil
         }
@@ -38,7 +38,7 @@ class Channel: NSObject {
         self.currentPattern?.channelSelectedOn = self
     }
     
-    @objc var visibility: Float {
+    @objc dynamic var visibility: Float {
         didSet {
             ServerController.sharedInstance.setChannelVisibility(self)
         }

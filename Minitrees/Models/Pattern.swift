@@ -18,8 +18,8 @@ class Pattern: NSObject {
     }
     
     let index: Int
-    @objc let name: String
+    @objc dynamic let name: String
     
-    @objc var channelSelectedOn: Channel?
+    @objc dynamic var channelSelectedOn: Channel?
     
 }

@@ -11,8 +11,8 @@ import ReactiveSwift
 
 class ChannelCollectionViewCell: UICollectionViewCell {
     
-    @objc var channel: Channel!
-    @objc var currentlySelected = false
+    @objc dynamic var channel: Channel!
+    @objc dynamic var currentlySelected = false
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var channelLabel: UILabel!
@@ -26,7 +26,7 @@ class ChannelCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.visibilitySlider.transform = CGAffineTransform(rotationAngle: .pi/2);
+        self.visibilitySlider.transform = CGAffineTransform(rotationAngle: -.pi/2);
         
         SignalProducer.merge([self.reactive.producer(forKeyPath: #keyPath(channel)), DisplayState.sharedInstance.reactive.producer(forKeyPath: #keyPath(DisplayState.selectedChannel))]).startWithValues { [unowned self] (_) in
             self.currentlySelected = self.channel != nil && DisplayState.sharedInstance.selectedChannel != nil && self.channel == DisplayState.sharedInstance.selectedChannel

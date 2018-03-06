@@ -11,7 +11,7 @@ import ReactiveSwift
 
 class EffectTableViewCell: UITableViewCell {
     
-    @objc var effect: Effect!
+    @objc dynamic var effect: Effect!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var enabledIndicatorView: UIView!
