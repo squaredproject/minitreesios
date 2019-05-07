@@ -9,7 +9,7 @@
 import UIKit
 
 class MixerViewController: UIViewController {
-
+    
     @IBOutlet weak var controllerView: UIView!
     @IBOutlet weak var connectingView: UIView!
     @IBOutlet weak var connectedView: UIView!
@@ -25,6 +25,11 @@ class MixerViewController: UIViewController {
     
     @IBOutlet var sliders: [UISlider]!
     
+    
+    //var timer:Timer!
+    
+    //var secondsCounter = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +38,7 @@ class MixerViewController: UIViewController {
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
             self.connectingView.isHidden = Model.sharedInstance.loaded
             self.connectedView.isHidden = !Model.sharedInstance.loaded
+            
         }
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.autoplay)).startWithValues { [unowned self] (_) in
@@ -40,6 +46,9 @@ class MixerViewController: UIViewController {
             
             self.controllerView.isHidden = Model.sharedInstance.autoplay
             self.autoplayView.isHidden = !Model.sharedInstance.autoplay
+            //if !self.autoplaySwitch.isOn{
+                //self.runTimer()
+            //}
         }
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.brightness)).startWithValues { [unowned self] (_) in
@@ -61,18 +70,34 @@ class MixerViewController: UIViewController {
         
         for slider in self.sliders {
             slider.setThumbImage(UIImage(named: "channelSliderThumbNormal"),
-                for: UIControlState());
+                                 for: UIControlState());
             slider.setThumbImage(UIImage(named: "channelSliderThumbNormal"),
-                for: .highlighted);
+                                 for: .highlighted);
             slider.setMinimumTrackImage(UIImage(named: "channelSliderBarNormalMin"),
-                for: UIControlState());
+                                        for: UIControlState());
             slider.setMaximumTrackImage(UIImage(named: "channelSliderBarNormalMax"),
-                for: UIControlState());
+                                        for: UIControlState());
+        }
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.userActivityTimeout(notification:)),
+            name: .appTimeout,
+            object: nil)
+    }
+    
+    @objc func userActivityTimeout(notification: NSNotification){
+        print("User In active")
+        if !self.controllerView.isHidden && !self.autoplaySwitch.isOn {
+            Model.sharedInstance.autoplay = !self.autoplaySwitch.isHidden
         }
     }
     
     @IBAction func autoplayChanged(_ sender: AnyObject) {
         Model.sharedInstance.autoplay = self.autoplaySwitch.isOn
+        //if self.autoplaySwitch.isOn{
+        //runTimer()
+        //}
     }
     
     @IBAction func brightnessChanged(_ sender: UISlider) {
@@ -90,5 +115,27 @@ class MixerViewController: UIViewController {
     @IBAction func blurChanged(_ sender: AnyObject) {
         Model.sharedInstance.blur = self.blurSlider.value
     }
-
+    
+    
+    /*func runTimer() {
+        secondsCounter = AUTO_PILOT_TIME_OUT
+        if timer != nil{
+            timer.invalidate()
+            timer = nil
+        }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(MixerViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    @objc func updateTimer() {
+        print("Timer changed \(secondsCounter)")
+        secondsCounter -= 1
+        
+        if(secondsCounter == 1)
+        {
+            print("Auto play \(self.autoplaySwitch.isHidden)")
+            Model.sharedInstance.autoplay = !self.autoplaySwitch.isHidden
+            timer.invalidate()
+            timer = nil
+            secondsCounter = AUTO_PILOT_TIME_OUT
+        }
+    }*/
 }
