@@ -10,6 +10,9 @@ import UIKit
 
 class MixerViewController: UIViewController {
 
+    var seconds = 10
+    var timer = Timer()
+    
     @IBOutlet weak var controllerView: UIView!
     @IBOutlet weak var connectingView: UIView!
     @IBOutlet weak var connectedView: UIView!
@@ -30,10 +33,10 @@ class MixerViewController: UIViewController {
         
         ServerController.sharedInstance.connect()
         
-        Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
+      /*  Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
             self.connectingView.isHidden = Model.sharedInstance.loaded
             self.connectedView.isHidden = !Model.sharedInstance.loaded
-        }
+        }*/
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.autoplay)).startWithValues { [unowned self] (_) in
             self.autoplaySwitch.isOn = Model.sharedInstance.autoplay
@@ -73,8 +76,22 @@ class MixerViewController: UIViewController {
     
     @IBAction func autoplayChanged(_ sender: AnyObject) {
         Model.sharedInstance.autoplay = self.autoplaySwitch.isOn
+        runTimer()
     }
-    
+    func runTimer() {
+        seconds = 10
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(MixerViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    @objc func updateTimer() {
+        seconds -= 1
+        if(seconds == 1)
+        {
+            Model.sharedInstance.autoplay = self.autoplaySwitch.isHidden
+            timer.invalidate()
+            
+        }
+    }
+
     @IBAction func brightnessChanged(_ sender: UISlider) {
         Model.sharedInstance.brightness = sender.value
     }
