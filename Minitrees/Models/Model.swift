@@ -28,7 +28,7 @@ class Model: NSObject {
         }
     }
     
-    @objc dynamic var brightness: Float = 0 {
+    @objc dynamic var brightness: Float = 100 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setBrightness(brightness)
