@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,7 +29,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbQ-Wh-67c">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbQ-Wh-67c">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSY-2o-Ua6">
@@ -45,7 +45,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="nwm-B4-a81" firstAttribute="centerX" secondItem="xbQ-Wh-67c" secondAttribute="centerX" id="3vh-5e-oAW"/>
                                     <constraint firstAttribute="centerY" secondItem="xSY-2o-Ua6" secondAttribute="centerY" id="BFA-kz-anc"/>
@@ -79,7 +79,7 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IaY-8B-2k8">
                                                         <rect key="frame" x="0.0" y="154" width="414" height="411"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BzS-6I-1yD">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="BzS-6I-1yD">
                                                             <size key="itemSize" width="411" height="416"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -130,12 +130,20 @@
                                                             <action selector="autoPilotInterActBt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iFg-qt-CSb"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting to Squared Mini Tree" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoh-wZ-ueH">
+                                                        <rect key="frame" x="37.666666666666657" y="678" width="339" height="22"/>
+                                                        <fontDescription key="fontDescription" name="UniversLTStd" family="Univers LT Std" pointSize="22"/>
+                                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="IaY-8B-2k8" firstAttribute="leading" secondItem="Ox3-Tq-U71" secondAttribute="leading" id="8ed-jX-GK7"/>
                                                     <constraint firstAttribute="bottom" secondItem="epI-63-HRq" secondAttribute="bottom" constant="68" id="FIB-YN-xy5"/>
                                                     <constraint firstItem="OCT-vE-chK" firstAttribute="centerX" secondItem="Ox3-Tq-U71" secondAttribute="centerX" id="FfQ-6S-oqJ"/>
+                                                    <constraint firstItem="uoh-wZ-ueH" firstAttribute="centerX" secondItem="Ox3-Tq-U71" secondAttribute="centerX" id="H1z-ij-w4a"/>
+                                                    <constraint firstAttribute="bottom" secondItem="uoh-wZ-ueH" secondAttribute="bottom" constant="16" id="JIR-xn-P9d"/>
                                                     <constraint firstItem="KzJ-RH-htn" firstAttribute="centerX" secondItem="OCT-vE-chK" secondAttribute="centerX" id="JSl-4S-EM2"/>
                                                     <constraint firstItem="IaY-8B-2k8" firstAttribute="top" secondItem="KzJ-RH-htn" secondAttribute="bottom" constant="10" id="XuW-u4-j6r"/>
                                                     <constraint firstAttribute="trailing" secondItem="IaY-8B-2k8" secondAttribute="trailing" id="YFQ-nE-NE2"/>
@@ -440,6 +448,7 @@
                         <outlet property="brightnessSlider" destination="a68-sg-c62" id="cKM-Qu-43y"/>
                         <outlet property="collectionView" destination="IaY-8B-2k8" id="kGd-2M-VIk"/>
                         <outlet property="connectedView" destination="q14-R6-JqY" id="yfE-5V-xzk"/>
+                        <outlet property="connectingLabel" destination="uoh-wZ-ueH" id="vCk-mU-bOC"/>
                         <outlet property="connectingView" destination="xbQ-Wh-67c" id="XIR-SW-c8D"/>
                         <outlet property="controllerView" destination="Jbf-er-1xv" id="FaR-a2-2w2"/>
                         <outlet property="speedSlider" destination="8L1-gr-fZd" id="jQw-JG-3lz"/>

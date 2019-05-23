@@ -14,6 +14,7 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
     @IBOutlet weak var autoPilotInterActBt: UIButton!
     @IBOutlet weak var controllerView: UIView!
     @IBOutlet weak var connectingView: UIView!
+    @IBOutlet weak var connectingLabel: UIView!
     @IBOutlet weak var connectedView: UIView!
     @IBOutlet weak var autoplayView: UIView!
     
@@ -28,6 +29,7 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
     @IBOutlet var sliders: [UISlider]!
     
     var imagesArr = [UIImage(named: "image1"),UIImage(named: "image2"),UIImage(named: "image4"),UIImage(named: "image4")]
+    
     var timer:Timer? = nil
     
     //var secondsCounter = 0
@@ -41,8 +43,10 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
         ServerController.sharedInstance.connect()
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
-            self.connectingView.isHidden = Model.sharedInstance.loaded
-            self.connectedView.isHidden = !Model.sharedInstance.loaded
+            //self.connectingView.isHidden = Model.sharedInstance.loaded
+            //self.connectedView.isHidden = !Model.sharedInstance.loaded
+            self.connectingLabel.isHidden = Model.sharedInstance.loaded
+            self.connectingLabel.isHidden = !Model.sharedInstance.loaded
         }
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.autoplay)).startWithValues { [unowned self] (_) in
@@ -204,9 +208,6 @@ extension MixerViewController : UICollectionViewDataSource{
         
     }
 
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
