@@ -35,11 +35,12 @@ class MixerViewController: UIViewController {
         
         ServerController.sharedInstance.connect()
         
+        
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
             self.connectingView.isHidden = Model.sharedInstance.loaded
             self.connectedView.isHidden = !Model.sharedInstance.loaded
-            
         }
+        
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.autoplay)).startWithValues { [unowned self] (_) in
             self.autoplaySwitch.isOn = Model.sharedInstance.autoplay
