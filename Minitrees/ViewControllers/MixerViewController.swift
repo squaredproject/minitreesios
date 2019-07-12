@@ -28,7 +28,10 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
     
     @IBOutlet var sliders: [UISlider]!
     
-    var imagesArr = [UIImage(named: "image1"),UIImage(named: "image2"),UIImage(named: "image4"),UIImage(named: "image4")]
+    var imagesArr = [UIImage(named: "image1"),
+                     UIImage(named: "image2"),
+                     UIImage(named: "image4"),
+                     UIImage(named: "image4")]
     
     var timer:Timer? = nil
     
@@ -41,12 +44,17 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
         collectionView.dataSource = self
         reloadCollectionView()
         ServerController.sharedInstance.connect()
-        
+       
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.loaded)).startWithValues { [unowned self] (_) in
             //self.connectingView.isHidden = Model.sharedInstance.loaded
             //self.connectedView.isHidden = !Model.sharedInstance.loaded
             self.connectingLabel.isHidden = Model.sharedInstance.loaded
-            self.connectingLabel.isHidden = !Model.sharedInstance.loaded
+            self.connectedView.isHidden = !Model.sharedInstance.loaded
+            if (!self.connectingLabel.isHidden){
+                self.autoplayView.isHidden = false
+                self.connectedView.isHidden = false
+                self.controllerView.isHidden = true
+            }
         }
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.autoplay)).startWithValues { [unowned self] (_) in
@@ -54,9 +62,7 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
             
             self.controllerView.isHidden = Model.sharedInstance.autoplay
             self.autoplayView.isHidden = !Model.sharedInstance.autoplay
-            //if !self.autoplaySwitch.isOn{
-                //self.runTimer()
-            //}
+            
         }
         
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.brightness)).startWithValues { [unowned self] (_) in
@@ -92,12 +98,16 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
             selector: #selector(self.userActivityTimeout(notification:)),
             name: .appTimeout,
             object: nil)
+        
+        //Set autoplay mode enable by default
+        Model.sharedInstance.autoplay = true;
     }
     
     @objc func userActivityTimeout(notification: NSNotification){
         print("User In active")
         if !self.controllerView.isHidden && !self.autoplaySwitch.isOn {
             Model.sharedInstance.autoplay = !self.autoplaySwitch.isHidden
+            setControlsToZero()
         }
     }
     
@@ -126,32 +136,34 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
     
     
     @IBAction func autoPilotInterActBt(_ sender: Any) {
-        Model.sharedInstance.autoplay = self.autoplaySwitch.isHidden
+        if self.connectingLabel.isHidden {
+            self.setControlsToZero()
+             Model.sharedInstance.autoplay = self.autoplaySwitch.isHidden
+        }
+    }
+    
+    func setControlsToZero(){
+        
+        Model.sharedInstance.brightness = 100.0
+        Model.sharedInstance.spin = 0.0
+        Model.sharedInstance.speed = 0.0
+        Model.sharedInstance.blur = 0.0
+        DisplayState.sharedInstance.selectedChannel?.currentPattern = nil
+        DisplayState.sharedInstance.selectedChannelIndex = 0
+        DisplayState.sharedInstance.selectedChannel = nil
+        
+        for (index,channel) in Model.sharedInstance.channels.enumerated(){
+            if index == 0{
+                DisplayState.sharedInstance.selectedChannel = channel
+                channel.visibility = 100.0
+            }else{
+                channel.visibility = 0.0
+            }
+        }
         
     }
-    /*func runTimer() {
-        secondsCounter = AUTO_PILOT_TIME_OUT
-        if timer != nil{
-            timer.invalidate()
-            timer = nil
-        }
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(MixerViewController.updateTimer)), userInfo: nil, repeats: true)
-    }
-    @objc func updateTimer() {
-        print("Timer changed \(secondsCounter)")
-        secondsCounter -= 1
-        
-        if(secondsCounter == 1)
-        {
-            print("Auto play \(self.autoplaySwitch.isHidden)")
-            Model.sharedInstance.autoplay = !self.autoplaySwitch.isHidden
-            timer.invalidate()
-            timer = nil
-            secondsCounter = AUTO_PILOT_TIME_OUT
-        }
-    }*/
+  
     func reloadCollectionView() {
-        
         self.collectionView.reloadData()
         
         // Invalidating timer for safety reasons
@@ -162,7 +174,6 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
         
         //This will register the timer to the main run loop
         RunLoop.main.add(self.timer!, forMode: .commonModes)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -170,19 +181,17 @@ class MixerViewController: UIViewController ,UICollectionViewDelegateFlowLayout{
         return CGSize(width:collectionView.frame.width, height: collectionView.frame.height)
     }
 }
+
 extension MixerViewController : UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imagesArr.count
     }
     
-    
-    
     @objc func autoScrollImageSlider() {
         
         DispatchQueue.global(qos: .background).async {
-            
             DispatchQueue.main.async {
-                
                 let firstIndex = 0
                 let lastIndex = (self.imagesArr.count) - 1
                 
@@ -193,31 +202,32 @@ extension MixerViewController : UICollectionViewDataSource{
                 let firstIndexPath: IndexPath = IndexPath.init(item: firstIndex, section: 0)
                 
                 if nextIndex > lastIndex {
-                    
                     self.collectionView.scrollToItem(at: firstIndexPath, at: .centeredHorizontally, animated: true)
-                    
                 } else {
-                    
                     self.collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
-                    
                 }
-                
             }
-            
         }
-        
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         cell.autoPilotImageView.image = imagesArr[indexPath.row]
         return cell
     }
+   
     override func viewWillDisappear(_ animated: Bool) {
-    self.timer?.invalidate()
+        self.timer?.invalidate()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if self.connectingLabel.isHidden {
+            self.setControlsToZero()
+            Model.sharedInstance.autoplay = self.autoplaySwitch.isHidden
+        }
     }
 }
+
 extension MixerViewController : UICollectionViewDelegate
 {
     

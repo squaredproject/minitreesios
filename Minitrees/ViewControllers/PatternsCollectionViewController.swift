@@ -14,28 +14,23 @@ class PatternsCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Model.sharedInstance.reactive.producer(forKeyPath: #keyPath(Model.patterns)).startWithValues { [unowned self] (_) in
             self.collectionView!.reloadData()
         }
     }
-
+    
     // MARK: UICollectionViewDataSource
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return    Model.sharedInstance.patterns.count
+        return   Model.sharedInstance.patterns.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PatternCollectionViewCell
-        
         cell.pattern = Model.sharedInstance.patterns[indexPath.item]
-    
         return cell
     }
     
     // MARK: UICollectionViewDelegate
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pattern = Model.sharedInstance.patterns[indexPath.item]
         if let channelSelectedOn = pattern.channelSelectedOn {
@@ -44,5 +39,4 @@ class PatternsCollectionViewController: UICollectionViewController {
             DisplayState.sharedInstance.selectedChannel?.currentPattern = pattern
         }
     }
-
 }
