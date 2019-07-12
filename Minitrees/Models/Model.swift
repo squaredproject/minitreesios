@@ -18,7 +18,7 @@ class Model: NSObject {
     }
     
     var isIniting = false
-    @objc dynamic var loaded = false
+    @objc dynamic var loaded = true
     
     @objc dynamic var autoplay: Bool = false {
         didSet {
@@ -28,7 +28,7 @@ class Model: NSObject {
         }
     }
     
-    @objc dynamic var brightness: Float = 0 {
+    @objc dynamic var brightness: Float = 100 {
         didSet {
             if !self.isIniting {
                 ServerController.sharedInstance.setBrightness(brightness)

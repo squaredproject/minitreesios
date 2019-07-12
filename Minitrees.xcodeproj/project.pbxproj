@@ -28,7 +28,18 @@
 		27B556941A05D2FB00CEE159 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B556931A05D2FB00CEE159 /* MixerViewController.swift */; };
 		27BB0A4B1A03A7C100D37664 /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB0A4A1A03A7C100D37664 /* DisplayState.swift */; };
 		27BB0A4F1A03CBB300D37664 /* EffectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB0A4E1A03CBB300D37664 /* EffectCollectionViewCell.swift */; };
+		518EF9B322D85BB4001C4452 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 518EF9B222D85BB4001C4452 /* AppIcon.appiconset */; };
+		518EF9B522D85CDF001C4452 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518EF9B422D85CDF001C4452 /* Images-2.xcassets */; };
 		9E3396553FE7C3F2552A41BB /* Pods_Minitrees.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976BD787B81FECA798D130E8 /* Pods_Minitrees.framework */; };
+		A97F07B322951F6E00EB9ED7 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07AF22951F6D00EB9ED7 /* image2.jpg */; };
+		A97F07B422951F6E00EB9ED7 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07B022951F6D00EB9ED7 /* image1.jpg */; };
+		A97F07B522951F6E00EB9ED7 /* image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07B122951F6D00EB9ED7 /* image5.jpg */; };
+		A97F07B622951F6E00EB9ED7 /* image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07B222951F6D00EB9ED7 /* image4.jpg */; };
+		A97F07B82295204800EB9ED7 /* image6.png in Resources */ = {isa = PBXBuildFile; fileRef = A97F07B72295204800EB9ED7 /* image6.png */; };
+		A97F07BD22952BBF00EB9ED7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97F07BC22952BBF00EB9ED7 /* CollectionViewCell.swift */; };
+		A97F07BF22953FC100EB9ED7 /* image7.png in Resources */ = {isa = PBXBuildFile; fileRef = A97F07BE22953FC000EB9ED7 /* image7.png */; };
+		FF924DDC2276C82300F54879 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF924DDB2276C82300F54879 /* TimerApplication.swift */; };
+		FF924DDE2276D6FD00F54879 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF924DDD2276D6FD00F54879 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,8 +70,19 @@
 		27B556931A05D2FB00CEE159 /* MixerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
 		27BB0A4A1A03A7C100D37664 /* DisplayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		27BB0A4E1A03CBB300D37664 /* EffectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectCollectionViewCell.swift; sourceTree = "<group>"; };
+		518EF9B222D85BB4001C4452 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = "../../../Downloads/Raw Icon/ios/AppIcon.appiconset"; sourceTree = "<group>"; };
+		518EF9B422D85CDF001C4452 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		976BD787B81FECA798D130E8 /* Pods_Minitrees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minitrees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A97F07AF22951F6D00EB9ED7 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
+		A97F07B022951F6D00EB9ED7 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
+		A97F07B122951F6D00EB9ED7 /* image5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image5.jpg; sourceTree = "<group>"; };
+		A97F07B222951F6D00EB9ED7 /* image4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpg; sourceTree = "<group>"; };
+		A97F07B72295204800EB9ED7 /* image6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image6.png; sourceTree = "<group>"; };
+		A97F07BC22952BBF00EB9ED7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		A97F07BE22953FC000EB9ED7 /* image7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image7.png; sourceTree = "<group>"; };
 		BA3AA172CBABA9850C7CF367 /* Pods-Minitrees.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minitrees.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minitrees/Pods-Minitrees.debug.xcconfig"; sourceTree = "<group>"; };
+		FF924DDB2276C82300F54879 /* TimerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplication.swift; sourceTree = "<group>"; };
+		FF924DDD2276D6FD00F54879 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,14 +164,20 @@
 		27A3962219FC8D4B0030B940 /* Minitrees */ = {
 			isa = PBXGroup;
 			children = (
+				A97F07B922952B4400EB9ED7 /* CollectionView */,
+				A97F07AE22951EE700EB9ED7 /* AutoPilotSilderImages */,
 				271B8DD819FF9B8F005C166C /* Models */,
 				2721BA241A01A6D800B905B7 /* Controllers */,
 				2721BA271A01A6DC00B905B7 /* ViewControllers */,
 				27A3962519FC8D4B0030B940 /* AppDelegate.swift */,
+				FF924DDB2276C82300F54879 /* TimerApplication.swift */,
+				FF924DDD2276D6FD00F54879 /* main.swift */,
 				27A3962919FC8D4B0030B940 /* Main.storyboard */,
+				518EF9B222D85BB4001C4452 /* AppIcon.appiconset */,
 				27A3962C19FC8D4B0030B940 /* Images.xcassets */,
 				27A3962E19FC8D4B0030B940 /* LaunchScreen.xib */,
 				273018DC1A0AAB0E0048FA42 /* Fonts */,
+				518EF9B422D85CDF001C4452 /* Images-2.xcassets */,
 				27A3962319FC8D4B0030B940 /* Supporting Files */,
 			);
 			path = Minitrees;
@@ -182,6 +210,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A97F07AE22951EE700EB9ED7 /* AutoPilotSilderImages */ = {
+			isa = PBXGroup;
+			children = (
+				A97F07BE22953FC000EB9ED7 /* image7.png */,
+				A97F07B72295204800EB9ED7 /* image6.png */,
+				A97F07B022951F6D00EB9ED7 /* image1.jpg */,
+				A97F07AF22951F6D00EB9ED7 /* image2.jpg */,
+				A97F07B222951F6D00EB9ED7 /* image4.jpg */,
+				A97F07B122951F6D00EB9ED7 /* image5.jpg */,
+			);
+			path = AutoPilotSilderImages;
+			sourceTree = "<group>";
+		};
+		A97F07B922952B4400EB9ED7 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				A97F07BC22952BBF00EB9ED7 /* CollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,7 +243,6 @@
 				27A3961D19FC8D4B0030B940 /* Frameworks */,
 				27A3961E19FC8D4B0030B940 /* Resources */,
 				5A975C2F174838B540566301 /* [CP] Embed Pods Frameworks */,
-				A7F789609BC7C6E38586CEC9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,7 +265,7 @@
 				TargetAttributes = {
 					27A3961F19FC8D4B0030B940 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 2YDE3E6GBP;
+						DevelopmentTeam = 9B5WM3HL64;
 						LastSwiftMigration = 0920;
 					};
 				};
@@ -227,6 +275,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -245,10 +294,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A97F07B422951F6E00EB9ED7 /* image1.jpg in Resources */,
+				518EF9B522D85CDF001C4452 /* Images-2.xcassets in Resources */,
+				A97F07B522951F6E00EB9ED7 /* image5.jpg in Resources */,
 				27A3962B19FC8D4B0030B940 /* Main.storyboard in Resources */,
 				27A3963019FC8D4B0030B940 /* LaunchScreen.xib in Resources */,
+				518EF9B322D85BB4001C4452 /* AppIcon.appiconset in Resources */,
 				279872031AE0753900EF32D1 /* Podfile.lock in Resources */,
+				A97F07B622951F6E00EB9ED7 /* image4.jpg in Resources */,
+				A97F07B82295204800EB9ED7 /* image6.png in Resources */,
 				27A3964619FC96BE0030B940 /* Podfile in Resources */,
+				A97F07BF22953FC100EB9ED7 /* image7.png in Resources */,
+				A97F07B322951F6E00EB9ED7 /* image2.jpg in Resources */,
 				27A3962D19FC8D4B0030B940 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +319,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Minitrees/Pods-Minitrees-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Minitrees/Pods-Minitrees-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/PKJSONSocket/PKJSONSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
@@ -279,22 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Minitrees/Pods-Minitrees-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7F789609BC7C6E38586CEC9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Minitrees/Pods-Minitrees-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Minitrees/Pods-Minitrees-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B82A3223531F89346F1C6E34 /* [CP] Check Pods Manifest.lock */ = {
@@ -324,12 +366,15 @@
 			files = (
 				271B8DDC19FF9B8F005C166C /* Pattern.swift in Sources */,
 				278800081A09B30100B3BEB9 /* Channel.swift in Sources */,
+				FF924DDE2276D6FD00F54879 /* main.swift in Sources */,
 				2721BA2B1A01A6DC00B905B7 /* PatternCollectionViewCell.swift in Sources */,
 				278800041A09AF1400B3BEB9 /* ChannelCollectionViewCell.swift in Sources */,
+				FF924DDC2276C82300F54879 /* TimerApplication.swift in Sources */,
 				273018EA1A0ACA330048FA42 /* EffectsTableViewController.swift in Sources */,
 				27B556941A05D2FB00CEE159 /* MixerViewController.swift in Sources */,
 				2721BA2C1A01A6DC00B905B7 /* PatternsCollectionViewController.swift in Sources */,
 				273018EC1A0ACA3F0048FA42 /* EffectTableViewCell.swift in Sources */,
+				A97F07BD22952BBF00EB9ED7 /* CollectionViewCell.swift in Sources */,
 				2721BA2D1A01A6DC00B905B7 /* ViewController.swift in Sources */,
 				27BB0A4B1A03A7C100D37664 /* DisplayState.swift in Sources */,
 				271B8DDE1A005BED005C166C /* Effect.swift in Sources */,
@@ -455,11 +500,13 @@
 			baseConfigurationReference = BA3AA172CBABA9850C7CF367 /* Pods-Minitrees.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9B5WM3HL64;
 				INFOPLIST_FILE = Minitrees/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "net.kylefleming.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = net.kylefleming.Minitrees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
@@ -471,11 +518,13 @@
 			baseConfigurationReference = 2045C8322330A7466BE30499 /* Pods-Minitrees.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9B5WM3HL64;
 				INFOPLIST_FILE = Minitrees/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "net.kylefleming.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = net.kylefleming.Minitrees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
