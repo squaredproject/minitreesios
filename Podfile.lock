@@ -10,7 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - PKJSONSocket (from `https://github.com/kylefleming/PKJSONSocket.git`)
-  - ReactiveCocoa (~> 7.1)
+  - ReactiveCocoa (~> 7.2)
   - ReactiveSwift (~> 3.1)
 
 SPEC REPOS:
@@ -36,6 +36,6 @@ SPEC CHECKSUMS:
   ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
 
-PODFILE CHECKSUM: 75325a92f4a1342bc1715e307823c979b6490935
+PODFILE CHECKSUM: 9cf96c5c1a425cf2823428ddad3b00d84125d07e
 
 COCOAPODS: 1.6.1
