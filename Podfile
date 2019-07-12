@@ -7,5 +7,5 @@ use_frameworks!
 target 'Minitrees' do
   pod 'PKJSONSocket', git: 'https://github.com/kylefleming/PKJSONSocket.git'
   pod 'ReactiveSwift', '~> 3.1'
-  pod 'ReactiveCocoa', '~> 7.1'
+  pod 'ReactiveCocoa', '~> 7.2'
 end
