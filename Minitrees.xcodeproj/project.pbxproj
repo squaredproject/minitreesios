@@ -29,7 +29,6 @@
 		27BB0A4B1A03A7C100D37664 /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB0A4A1A03A7C100D37664 /* DisplayState.swift */; };
 		27BB0A4F1A03CBB300D37664 /* EffectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB0A4E1A03CBB300D37664 /* EffectCollectionViewCell.swift */; };
 		518EF9B322D85BB4001C4452 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 518EF9B222D85BB4001C4452 /* AppIcon.appiconset */; };
-		518EF9B522D85CDF001C4452 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518EF9B422D85CDF001C4452 /* Images-2.xcassets */; };
 		A97F07B322951F6E00EB9ED7 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07AF22951F6D00EB9ED7 /* image2.jpg */; };
 		A97F07B422951F6E00EB9ED7 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07B022951F6D00EB9ED7 /* image1.jpg */; };
 		A97F07B522951F6E00EB9ED7 /* image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A97F07B122951F6D00EB9ED7 /* image5.jpg */; };
@@ -69,7 +68,6 @@
 		27BB0A4A1A03A7C100D37664 /* DisplayState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		27BB0A4E1A03CBB300D37664 /* EffectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectCollectionViewCell.swift; sourceTree = "<group>"; };
 		518EF9B222D85BB4001C4452 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = "../../../Downloads/Raw Icon/ios/AppIcon.appiconset"; sourceTree = "<group>"; };
-		518EF9B422D85CDF001C4452 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		A97F07AF22951F6D00EB9ED7 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		A97F07B022951F6D00EB9ED7 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		A97F07B122951F6D00EB9ED7 /* image5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image5.jpg; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 				27A3962C19FC8D4B0030B940 /* Images.xcassets */,
 				27A3962E19FC8D4B0030B940 /* LaunchScreen.xib */,
 				273018DC1A0AAB0E0048FA42 /* Fonts */,
-				518EF9B422D85CDF001C4452 /* Images-2.xcassets */,
 				27A3962319FC8D4B0030B940 /* Supporting Files */,
 			);
 			path = Minitrees;
@@ -269,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A97F07B422951F6E00EB9ED7 /* image1.jpg in Resources */,
-				518EF9B522D85CDF001C4452 /* Images-2.xcassets in Resources */,
 				A97F07B522951F6E00EB9ED7 /* image5.jpg in Resources */,
 				27A3962B19FC8D4B0030B940 /* Main.storyboard in Resources */,
 				27A3963019FC8D4B0030B940 /* LaunchScreen.xib in Resources */,
@@ -432,7 +428,7 @@
 				DEVELOPMENT_TEAM = 9B5WM3HL64;
 				INFOPLIST_FILE = Minitrees/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.kylefleming.Minitrees;
+				PRODUCT_BUNDLE_IDENTIFIER = com.charlesgadeken.Minitrees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
@@ -449,7 +445,7 @@
 				DEVELOPMENT_TEAM = 9B5WM3HL64;
 				INFOPLIST_FILE = Minitrees/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.kylefleming.Minitrees;
+				PRODUCT_BUNDLE_IDENTIFIER = com.charlesgadeken.Minitrees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
